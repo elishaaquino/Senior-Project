@@ -1,10 +1,7 @@
-import axios from "axios";
-
-const USER_API_URL = "http://localhost:8080";
-
+import http from "../http-common";
 class UserDataService {
   retrieveAllUsers() {
-    return axios.get(`${USER_API_URL}/users`);
+    return http.get(`/users`);
   }
 }
 
