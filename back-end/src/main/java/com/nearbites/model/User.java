@@ -12,16 +12,18 @@ public class User {
     private String firstName;
     private String lastName;
     private Contact contact;
+    private String imageUrl;
 
     public User() {
 
     }
 
-    public User(String username, String firstName, String lastName, Contact contact) {
+    public User(String username, String firstName, String lastName, Contact contact, String imageUrl) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.contact = contact;
+        this.imageUrl = imageUrl;
     }
 
     public String getId() {
@@ -62,6 +64,14 @@ public class User {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override

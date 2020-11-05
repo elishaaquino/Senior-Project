@@ -29,7 +29,7 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
             User _user = userRepository.save(new User(user.getUsername(),
-                    user.getFirstName(), user.getLastName(), user.getContact()));
+                    user.getFirstName(), user.getLastName(), user.getContact(), user.getImageUrl()));
             return new ResponseEntity<>(_user, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>((User) null, HttpStatus.INTERNAL_SERVER_ERROR);

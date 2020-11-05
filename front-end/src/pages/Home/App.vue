@@ -16,14 +16,19 @@
           </tr>
         </tbody>
       </table>
+      <S3ImageUpload />
     </div>
   </div>
 </template>
 
 <script>
 import UserDataService from '../../service/UserDataService';
+import S3ImageUpload from '../../components/S3ImageUpload';
 export default {
   name: "UsersList",
+  components: {
+     S3ImageUpload
+  },
   data() {
     return {
       users: [],
