@@ -9,7 +9,7 @@
                         <div class="text-container">
                             <h1>FEELING HUNGRY FOR</h1>
                             <h1>HOME COOKED FOOD?</h1>
-                            <form action="/action_page.php">
+                            <form action="">
                               <input type="text" placeholder="Search.." name="search">
                               <button href="#users">SEARCH ICON HERE</button>
                             </form>
