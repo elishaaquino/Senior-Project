@@ -15,6 +15,10 @@ export default new Router({
       {
          path: "/users",
          component: () => import("./components/UserList")
+      },
+      {
+         path: "/results",
+         component: () => import("./components/Results")
       }
    ]
 });
