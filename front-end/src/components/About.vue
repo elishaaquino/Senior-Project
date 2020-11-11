@@ -9,10 +9,10 @@
                         <div class="text-container">
                             <h1>FEELING HUNGRY FOR</h1>
                             <h1>HOME COOKED FOOD?</h1>
-                            <form action="">
-                              <input type="text" placeholder="Search.." name="search">
-                              <button href="#users">SEARCH ICON HERE</button>
-                            </form>
+                            <b-form action="">
+                              <input  class="search" type="text" placeholder="Search.." name="search"/>
+                              <b-button  class="search-button" size="sm" href="results"><b-icon icon="search"></b-icon></b-button>
+                            </b-form>
                             <p class="p-heading p-large"><strong>Suggested: </strong>pasta, brownies, kimchi</p>
                         </div>
                     </div> <!-- end of col -->
@@ -204,6 +204,21 @@ export default {
 
 .basic-2 .popular-items .p-large {
 	margin-bottom: 0.25rem;
+}
+
+.search {
+   display: inline-block;
+   width: 300px;
+   vertical-align: middle;
+   border: 1px solid #bdbdbd;
+   border-top-left-radius: 0.25rem;
+   border-bottom-left-radius: 0.25rem;
+   height: 1.9em;
+   padding-left: 8px;
+}
+
+.search-button {
+   vertical-align: middle;
 }
 
 </style>
