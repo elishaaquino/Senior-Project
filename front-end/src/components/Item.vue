@@ -48,9 +48,9 @@ export default {
       font-weight: bold;
    }
    display: inline-block;
-   width: 15rem;
+   width: 14rem;
 	margin-right: 1.5rem;
-	margin-bottom: 3.5rem;
+	margin-bottom: 2.5rem;
 	margin-left: 1.5rem;
    flex: 1 0 21%;
 }
