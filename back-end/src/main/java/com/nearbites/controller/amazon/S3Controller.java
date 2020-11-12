@@ -26,4 +26,9 @@ public class S3Controller {
     public String uploadImage(MultipartFile file) {
         return this.amazonS3ImageService.uploadImageToAmazon(file);
     }
+
+    @PostMapping("/uploadImages")
+    public List<String> uploadImages(List<MultipartFile> files) {
+        return this.amazonS3ImageService.insertImages(files);
+    }
 }
