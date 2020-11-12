@@ -7,8 +7,8 @@ export default new Router({
    mode: "history",
    routes: [
       {
-         path: "/",
-         alias: "/about",
+         path: "/about",
+         alias: "/",
          name: "about",
          component: () => import("./components/About")
       },
