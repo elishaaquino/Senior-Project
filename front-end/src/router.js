@@ -25,6 +25,10 @@ export default new Router({
          alias: "/userAccount",
          name: "userAccount",
          component: () => import("./components/UserAccount")
+      },
+      {
+         path: "/additem",
+         component: () => import("./components/AddItem")
       }
    ]
 });

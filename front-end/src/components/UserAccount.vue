@@ -8,7 +8,7 @@
                         <a href="#selling" class="button1" @click="set_SelectedButton(0)">Selling</a>
                         <a href="#buying" class="button1" @click="set_SelectedButton(1)">Buying</a>
                         <br>
-                        <button class="button3">+ Add Item</button>
+                        <b-button class="button3" href="additem">+ Add Item</b-button>
                     </div>
                     <div class="user-data">
                         <h2>Welcome Back,</h2>
@@ -19,20 +19,20 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div v-if="btn_id === 0">
-                            <Item 
-                                v-for="item in sellingItems" 
-                                :key="item.id"
-                                :itemName="item.itemName"
-                                :price="item.price"
-                                :quantity="item.quantity"/>
+                                <Item 
+                                    v-for="item in sellingItems" 
+                                    :key="item.id"
+                                    :itemName="item.itemName"
+                                    :price="item.price"
+                                    :quantity="item.quantity"/>
                             </div>
                             <div v-if="btn_id === 1">
                                 <Item 
-                                v-for="item in buyingItems" 
-                                :key="item.id"
-                                :itemName="item.itemName"
-                                :price="item.price"
-                                :quantity="item.quantity"/>
+                                    v-for="item in buyingItems" 
+                                    :key="item.id"
+                                    :itemName="item.itemName"
+                                    :price="item.price"
+                                    :quantity="item.quantity"/>
                             </div>
                         </div>
                     </div>
