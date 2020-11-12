@@ -12,7 +12,6 @@
         <tbody>
           <tr v-for="user in users" v-bind:key="user.id">
             <td>{{user.id}}</td>
-            <!-- <a href="userAccount" user-description="user"><td>{{user.username}}</td></a> -->
             <td><router-link :to="{ name: 'userAccount', params: { userUsername: user.username } }">{{user.username}}</router-link></td>
           </tr>
         </tbody>
