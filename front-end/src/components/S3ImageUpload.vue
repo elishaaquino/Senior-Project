@@ -1,6 +1,6 @@
 <template>
   <div class="large-12 medium-12 small-12 cell">
-    <input type="file" @change="onFileChange($event.target.files)"/>
+    <input type="file" multiple="multiple" @change="onFileChange($event.target.files)"/>
     <button @click="submitFile()">Upload</button>
   </div>
 </template>
@@ -10,17 +10,21 @@ import http from "../http-common";
 export default {
    data() {
       return {
-         file: ''
+         files: undefined,
+         fileInfos: []
       }
    },
    methods: {
       onFileChange(files) {
-         this.file = files[0];
+         this.files = files;
+         console.log(this.files);
       },
       submitFile() {
-         const formData = new FormData();
-         formData.append("file", this.file);
-         http.post("storage/uploadImage",formData);
+         for (let i = 0; i < this.files.length; i++) {
+            const formData = new FormData();
+            formData.append("file", this.files[i]);
+            http.post("storage/uploadImage",formData).then(resp => console.log(resp.data));
+         }         
       }
    }
 }
