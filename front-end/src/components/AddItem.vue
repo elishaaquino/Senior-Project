@@ -23,7 +23,8 @@
             <textarea class="input-response" id="desc" v-model="desc" rows="3"/>
 
             <div class="img-upload-div">
-                <label class="img-upload"><input type="file" @change="onFileChange($event.target.files)"/>+ Add photo</label>
+                <label class="img-upload" v-if="files.length < 4"><input type="file" multiple="multiple" @change="onFileChange($event.target.files)"/>+ Add photo (4 max)</label>
+                <label class="img-upload-max" v-else><input type="file" disabled/>Max uploaded</label>
             </div>
 
             <div class="display-img">
@@ -38,7 +39,7 @@
             <input class="input-response" id="diet" v-model="diet"/>
 
             <button class="add-item-button">+ Add Item</button>
-            
+
         </form>
     </div>
 </template>
@@ -63,42 +64,50 @@ export default {
    methods: {
        createNewItem: function(e) {
 
-           if (this.itemName && this.price && this.desc) {
+           if (this.itemName && this.price && this.desc && this.files.length != 0) {
                 console.log("Valid.");
 
                 for (let i = 0; i < this.files.length; i++) {
                     const formData = new FormData();
                     formData.append("file", this.files[i]);
-                    http.post("storage/uploadImage",formData).then(resp => console.log(resp));
+                    http.post("storage/uploadImage",formData).then(resp => console.log(resp.data));
+                }     
+            }
+            else {
+                this.errors = [];
+
+                if (!this.itemName) {
+                    this.errors.push('Item name required');
                 }
-           }
-           else {
-               this.errors = [];
 
-               if (!this.itemName) {
-                   this.errors.push('Item name required');
-               }
+                if (!this.price) {
+                    this.errors.push('Price of item required');
+                }
 
-               if (!this.price) {
-                   this.errors.push('Price of item required');
-               }
+                if (!this.desc) {
+                    this.errors.push('Description required');
+                }
 
-               if (!this.desc) {
-                   this.errors.push('Description required');
-               }
+                if (this.files.length == 0) {
+                    this.errors.push('Photos required');
+                }
 
-               e.preventDefault();
-           }
+                e.preventDefault();
+            }
         },
         onFileChange(f) {
 
-            const file = f[0];
-            this.files.push(file);
+            for (let i = 0; i < f.length; i++) {
 
-            this.imgs.unshift( {
-                id: this.imgs.length + 1,
-                url: URL.createObjectURL(file)
-            });
+                if (this.files.length < 4) {
+                    this.files.push(f[i]);
+
+                    this.imgs.unshift( {
+                        id: this.imgs.length + 1,
+                        url: URL.createObjectURL(f[i])
+                    });
+                }
+            }
       }
    }
 };
@@ -138,6 +147,14 @@ input[type="file"] {
     width: 100%;
     padding: 5%;
     cursor: pointer;
+}
+
+.img-upload-max {
+    text-align: center;
+    border: 1px solid #000000;
+    border-radius: 2em;
+    width: 100%;
+    padding: 5%;
 }
 
 .img-upload:hover{
