@@ -18,11 +18,11 @@ export default new Router({
       },
       {
          path: "/results",
+         name: "results",
          component: () => import("./components/Results")
       },
       {
-         path: "/userAccount",
-         alias: "/userAccount",
+         path: "/userAccount/:userUsername",
          name: "userAccount",
          component: () => import("./components/UserAccount")
       },
@@ -33,6 +33,16 @@ export default new Router({
       {
          path: "/displayitem",
          component: () => import("./components/DisplayItem")
+      },
+      {
+         path: "/signIn",
+         name: "signIn",
+         component: () => import("./components/SignIn")
+      },
+      {
+         path: "/signUp",
+         name: "signUp",
+         component: () => import("./components/SignUp")
       }
    ]
 });
