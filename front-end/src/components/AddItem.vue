@@ -1,17 +1,23 @@
 <template>
     <div class="add-item">
         <strong><h2 class="add-item-header">Add item to store.</h2></strong>
+
+        <!-- form -->
         <form 
             class="add-item_create-item" 
             @submit.prevent="createNewItem"
         >
 
+            <!-- error checking -->
             <p v-if="errors.length">
                 <b>Please correct the following error(s):</b>
                 <ul>
                 <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
                 </ul>
             </p>
+
+            <!-- required fields -->
+            <strong>Required</strong>
 
             <label for="item-name">Item Name</label>
             <input class="input-response" id="item-name" v-model="itemName"/>
@@ -20,17 +26,18 @@
             <input class="input-response" id="price" type="number" v-model="price"/>
 
             <label for="desc">Description</label>
-            <textarea class="input-response" id="desc" v-model="desc" rows="3"/>
+            <textarea class="input-response-desc" id="desc" v-model="desc" rows="3"/>
 
+            <!-- upload images -->
             <div class="img-upload-div">
-                <label class="img-upload" v-if="files.length < 4"><input type="file" multiple="multiple" @change="onFileChange($event.target.files)"/>+ Add photo (4 max)</label>
-                <label class="img-upload-max" v-else><input type="file" disabled/>Max uploaded</label>
+                <label class="img-upload"><input type="file" multiple="multiple" @change="onFileChange($event.target.files)"/>+ Add photo</label>
+                <!-- <label class="img-upload-max" v-else><input type="file" disabled/>Max uploaded</label> -->
             </div>
-
             <div class="display-img">
                 <img class="img-box" v-for="img in imgs" :key="img.id" :src="img.url"/>
             </div>
 
+            <!-- optional information -->
             <strong>Extra Information (Optional)</strong>
             <label for="alergens">Allergens</label>
             <input class="input-response" id="allergens" v-model="allergens"/>
@@ -62,11 +69,14 @@ export default {
        }
    },
    methods: {
+       
+        // upon submission
        createNewItem: function(e) {
 
+           // checks if all required input fields are filled in
            if (this.itemName && this.price && this.desc && this.files.length != 0) {
-                console.log("Valid.");
 
+               // uploads images to S3
                 for (let i = 0; i < this.files.length; i++) {
                     const formData = new FormData();
                     formData.append("file", this.files[i]);
@@ -96,18 +106,19 @@ export default {
                 e.preventDefault();
             }
         },
+        // adds uploaded images to list
         onFileChange(f) {
 
             for (let i = 0; i < f.length; i++) {
 
-                if (this.files.length < 4) {
+                // if (this.files.length < 4) {
                     this.files.push(f[i]);
 
                     this.imgs.unshift( {
                         id: this.imgs.length + 1,
                         url: URL.createObjectURL(f[i])
                     });
-                }
+                // }
             }
       }
    }
@@ -130,6 +141,12 @@ export default {
     border: 1px solid #000000;
     border-radius: 2em;
     height: 35px;
+    margin-bottom: 10px;
+}
+
+.input-response-desc {
+    border: 1px solid #000000;
+    border-radius: 2em;
     margin-bottom: 10px;
 }
 

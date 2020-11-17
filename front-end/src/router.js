@@ -29,6 +29,10 @@ export default new Router({
       {
          path: "/additem",
          component: () => import("./components/AddItem")
+      },
+      {
+         path: "/displayitem",
+         component: () => import("./components/DisplayItem")
       }
    ]
 });
