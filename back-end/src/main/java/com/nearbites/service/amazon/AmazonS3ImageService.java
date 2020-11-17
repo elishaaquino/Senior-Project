@@ -17,14 +17,6 @@ import java.util.List;
 @Service
 public class AmazonS3ImageService extends AmazonClient {
 
-    public List<String> insertImages(List<MultipartFile> images) {
-        List<String> urls = new ArrayList<>();
-        for (MultipartFile image : images) {
-            urls.add(uploadImageToAmazon(image));
-        }
-        return urls;
-    }
-
     public String uploadImageToAmazon(MultipartFile multipartFile) {
         List<String> validExtensions = Arrays.asList("jpeg","jpg", "png");
 
