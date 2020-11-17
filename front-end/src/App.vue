@@ -22,7 +22,7 @@
                <b-dropdown-item href="#">Sign Out</b-dropdown-item>
             </b-nav-item-dropdown>
             
-            <b-nav-item to="/" v-else>Sign in</b-nav-item>
+            <b-nav-item to="/signIn" v-else>Sign In</b-nav-item>
          </b-navbar-nav>
       </b-navbar>
 
