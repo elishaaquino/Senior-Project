@@ -8,7 +8,7 @@
                         <a href="#selling" class="button1" @click="set_SelectedButton(0)">Selling</a>
                         <a href="#buying" class="button1" @click="set_SelectedButton(1)">Buying</a>
                         <br>
-                        <b-button class="button3" href="additem">+ Add Item</b-button>
+                        <b-button class="button3" href="../additem">+ Add Item</b-button>
                     </div>
                     <div class="user-data">
                         <h2>Welcome Back,</h2>
