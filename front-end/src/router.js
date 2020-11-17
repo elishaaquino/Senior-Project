@@ -27,6 +27,14 @@ export default new Router({
          component: () => import("./components/UserAccount")
       },
       {
+         path: "/additem",
+         component: () => import("./components/AddItem")
+      },
+      {
+         path: "/displayitem",
+         component: () => import("./components/DisplayItem")
+      },
+      {
          path: "/signIn",
          name: "signIn",
          component: () => import("./components/SignIn")
