@@ -111,14 +111,12 @@ export default {
 
             for (let i = 0; i < f.length; i++) {
 
-                // if (this.files.length < 4) {
                     this.files.push(f[i]);
 
                     this.imgs.unshift( {
                         id: this.imgs.length + 1,
                         url: URL.createObjectURL(f[i])
                     });
-                // }
             }
       }
    }
