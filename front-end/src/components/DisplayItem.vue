@@ -1,0 +1,129 @@
+<template>
+    <div class="container">
+
+        <div class="row mt-5 mb-4">
+
+            <!-- photos -->
+            <div class="col-6 pl-0">
+                <div class="gallery-row">
+                    <div class="gallery-container">
+                        <lightbox css="h-250 h-lg-400" :items="images" :cells="4"></lightbox>
+                    </div>
+                </div>
+            </div>
+
+            <!-- required item information -->
+            <div class="item-details col-3 pl-0">
+                <strong>{{itemName}}</strong>
+                <p>{{price}}</p>
+                <p>{{amount}}</p>
+                <div class="row mt-5 align-items-center">
+                    <div class="usr-img col-3 pr-0">
+                        <img src="../../public/images/profilePicture.jpg">
+                    </div>
+                    <div class="col pl-0">
+                        <strong>Made by {{user}}</strong>
+                    </div>
+                </div>
+                <div class="row mt-3 pl-3">
+                    <button class="contact-button">Message Seller</button>
+                </div>
+            </div>
+
+            <!-- extra information -->
+            <div class="extra-info col-3">
+                <strong>Extra Information</strong>
+                <strong><p>Contains:</p></strong>
+                <p>{{allergens}}</p>
+                <strong><p>Dietary Restrictions:</p></strong>
+                <p>{{diet}}</p>
+            </div>
+        </div>
+
+        <!-- reviews -->
+        <div class="row mb-4">
+            <div class="col-1"><strong>Reviews</strong></div>
+            <div class="col-3"><button class="add-review-button">+ Add Review</button></div>
+        </div>
+        <div>
+            <Review 
+                v-for="r in reviews"
+                :key="r.id"
+                :userName="r.username"
+                :date="r.date"
+                :content="r.content"
+                :imgUrl="r.img"
+            />
+        </div>
+
+    </div>
+</template>
+
+<script>
+import Review from "./Review";
+
+export default {
+  name: "Display-Item",
+  components: {
+    // lightbox,
+    Review
+  },
+  data: () => {
+    return {
+        user: "Monica",
+        itemName: 'Oreo Brownies',
+        price: '$12',
+        amount: '12 pieces',
+        allergens: "Peanuts, milk, eggs",
+        diet: "Gluten-free",
+        images: [
+            "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-3.jpg",
+            "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-7.jpg",
+            "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-10.jpg",
+            "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-5.jpg",
+            "https://confessionsofabakingqueen.com/wp-content/uploads/2020/07/oreo-brownies-on-a-black-wire-rack-on-a-grey-surfac-1-of-1.jpg"
+        ],
+        reviews: [
+            { id: 1, username: "Maggie Chang", date: "11/11/20", content: "Yummy!", img: "profilePicture.jpg" },
+            { id: 2, username: "Monica Andres", date: "11/12/20", content: "I'm allergic :(", img: "profilePicture.jpg" },
+            { id: 3, username: "Elisha Aquino", date: "11/14/20", content: "Delicious!", img: "profilePicture.jpg" }
+        ]
+    };
+  }
+};
+</script>
+
+<style>
+.gallery-container {
+  width: 100%;
+}
+
+.gallery-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.usr-img img{
+    width: 40px;
+    border-radius: 50%;
+}
+
+.contact-button {
+    padding:0.3em 1.2em;
+    border: 2px solid #000000;
+    border-radius:2em;
+    background-color:#ffffff;
+    width: 75%;
+    cursor: pointer;
+}
+
+.add-review-button {
+    padding:0.3em 1.2em;
+    border: 2px solid #000000;
+    border-radius:2em;
+    background-color:#ffffff;
+    width: 75%;
+    cursor: pointer;
+}
+</style>
