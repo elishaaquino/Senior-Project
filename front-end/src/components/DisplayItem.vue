@@ -65,7 +65,6 @@ import Review from "./Review";
 export default {
   name: "Display-Item",
   components: {
-    // lightbox,
     Review
   },
   data: () => {
