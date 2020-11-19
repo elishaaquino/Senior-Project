@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="row mt-3 pl-3">
-                    <button class="contact-button">Message Seller</button>
+                    <b-button class="contact-button">Message Seller</b-button>
                 </div>
             </div>
 
@@ -43,7 +43,11 @@
         <!-- reviews -->
         <div class="row mb-4">
             <div class="col-1"><strong>Reviews</strong></div>
-            <div class="col-3"><button class="add-review-button">+ Add Review</button></div>
+            <div class="col-3">
+                <router-link :to="{ name: 'addreview', params: { itemName: itemName, seller: user} }">
+                    <b-button class="add-review-button">+ Add Review</b-button>
+                </router-link>
+            </div>
         </div>
         <div>
             <Review 
@@ -113,6 +117,7 @@ export default {
     border: 2px solid #000000;
     border-radius:2em;
     background-color:#ffffff;
+    color:black;
     width: 75%;
     cursor: pointer;
 }
@@ -122,6 +127,7 @@ export default {
     border: 2px solid #000000;
     border-radius:2em;
     background-color:#ffffff;
+    color:black;
     width: 75%;
     cursor: pointer;
 }
