@@ -1,6 +1,6 @@
 <template>
   <div id = "app">
-      <b-navbar class="navbar navbar-expand navbar-dark bg-dark">
+      <b-navbar class="navbar navbar-expand">
          <router-link to="/" class="navbar-brand">NearBites</router-link>
          <div class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -45,5 +45,9 @@ export default {
 .sign-in {
    justify-content: right;
    flex: 1;
+}
+
+.navbar {
+   background: rgba(255,255,255);
 }
 </style>
