@@ -48,6 +48,11 @@ export default new Router({
          path: "/addreview",
          name: "addreview",
          component: () => import("./components/AddReview")
+      },
+      {
+         path: "/store/:storename",
+         name: "storepage",
+         component: () => import("./components/StorePage")
       }
    ]
 });

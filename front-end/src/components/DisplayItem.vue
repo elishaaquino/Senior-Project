@@ -17,14 +17,16 @@
                 <strong>{{itemName}}</strong>
                 <p>{{price}}</p>
                 <p>{{amount}}</p>
-                <div class="row mt-5 align-items-center">
-                    <div class="usr-img col-3 pr-0">
-                        <img src="../../public/images/profilePicture.jpg">
+                <router-link :to="{ name: 'storepage', params: { storename: storename, seller: seller } }">
+                    <div class="row mt-5 align-items-center">
+                        <div class="usr-img col-3 pr-0">
+                            <img src="../../public/images/profilePicture.jpg">
+                        </div>
+                        <div class="col pl-0">
+                            <strong>Made by {{ seller }}</strong>
+                        </div>
                     </div>
-                    <div class="col pl-0">
-                        <strong>Made by {{user}}</strong>
-                    </div>
-                </div>
+                </router-link>
                 <div class="row mt-3 pl-3">
                     <b-button class="contact-button">Message Seller</b-button>
                 </div>
@@ -44,7 +46,7 @@
         <div class="row mb-4">
             <div class="col-1"><strong>Reviews</strong></div>
             <div class="col-3">
-                <router-link :to="{ name: 'addreview', params: { itemName: itemName, seller: user} }">
+                <router-link :to="{ name: 'addreview', params: { itemName: itemName, seller: seller} }">
                     <b-button class="add-review-button">+ Add Review</b-button>
                 </router-link>
             </div>
@@ -73,7 +75,8 @@ export default {
   },
   data: () => {
     return {
-        user: "Monica",
+        seller: "Monica",
+        storename: "Bake n shake",
         itemName: 'Oreo Brownies',
         price: '$12',
         amount: '12 pieces',

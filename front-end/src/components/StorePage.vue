@@ -2,33 +2,34 @@
    <div>
         <div class="profile-main">
             <div class="profile-header">
-                <div class="container user-detail">
-                    <div class="user-image">
-                        <img src="../../public/images/profilePicture.jpg">
-                        <a href="#selling" class="button1" @click="set_SelectedButton(0)">Selling</a>
-                        <a href="#buying" class="button1" @click="set_SelectedButton(1)">Buying</a>
-                        <br>
-                        <b-button class="button3" href="../additem">+ Add Item</b-button>
-                    </div>
-                    <div class="user-data">
-                        <h2>Welcome Back,</h2>
-                        <h2><strong>{{userUsername}}</strong></h2>
+                <div class="container mt-5 user-detail">
+                    <div class="row">
+                        <div class="col-lg-2 user-image">
+                            <img src="../../public/images/profilePicture.jpg">
+                            <br>
+                        </div>
+                        <div class="col-lg-4 user-data">
+                            <h2><strong>{{ storename }}</strong></h2>
+                            <h4>By {{ seller }}</h4>
+                            <b-button class="button3 disabled" href="../additem">Contact Seller</b-button>
+                        </div>
+                        <div class="col-lg-6">
+                            <p> Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl eros, 
+                                pulvinar facilisis justo mollis, auctor consequat urna. Morbi a bibendum metus. 
+                                Donec scelerisque sollicitudin enim eu venenatis. Duis tincidunt laoreet ex, 
+                                in pretium orci vestibulum eget.
+                            </p>
+                            <p>San Diego, CA</p>
+                            <p>13 Items</p>
+                        </div>
                     </div>
                 </div>
-                <div class="container">
+                <div class="container mt-5">
                     <div class="row">
                         <div class="col-lg-12">
                             <div v-if="btn_id === 0">
                                 <Item 
                                     v-for="item in sellingItems" 
-                                    :key="item.id"
-                                    :itemName="item.itemName"
-                                    :price="item.price"
-                                    :quantity="item.quantity"/>
-                            </div>
-                            <div v-if="btn_id === 1">
-                                <Item 
-                                    v-for="item in buyingItems" 
                                     :key="item.id"
                                     :itemName="item.itemName"
                                     :price="item.price"
@@ -46,23 +47,21 @@
 import Item from "./Item";
 
 export default {
-    name: 'userAccount',
+    name: 'storepage',
     components: {Item},
         data () {
             return {
-                userUsername: "",
+                seller: "",
+                storename: "",
                 btn_id: 0,
                 sellingItems: [
                     { id: 1, itemName: "Brownies", price: "$12", quantity: "1 dozen"}, 
                     { id: 2, itemName: "Cookies", price: "$12", quantity: "1 dozen"},
                     { id: 3, itemName: "Lemon Bar", price: "$12", quantity: "1 dozen"},
-                    { id: 4, itemName: "Brownies", price: "$12", quantity: "1 dozen"}
-                ],
-                buyingItems: [
-                    { id: 5, itemName: "Fudge Brownies", price: "$12", quantity: "1 dozen"},
-                    { id: 6, itemName: "Pizookie", price: "$12", quantity: "1"},
-                    { id: 7, itemName: "Dulce de leche", price: "$12", quantity: "1 dozen"},
-                    { id: 8, itemName: "Ube Cookies", price: "$12", quantity: "1 dozen"}
+                    { id: 4, itemName: "Brownies", price: "$12", quantity: "1 dozen"},
+                    { id: 5, itemName: "Brownies", price: "$12", quantity: "1 dozen"},
+                    { id: 6, itemName: "Brownies", price: "$12", quantity: "1 dozen"},
+                    { id: 7, itemName: "Brownies", price: "$12", quantity: "1 dozen"}
                 ]
             }
         },
@@ -72,7 +71,8 @@ export default {
             }
         },
         created() {
-            this.userUsername = this.$route.params.userUsername;
+            this.seller = this.$route.params.seller;
+            this.storename = this.$route.params.storename;
         },
     };
 </script>
@@ -119,7 +119,7 @@ export default {
         background-color:#ffffff;
         text-align:center;
         transition: all 0.2s;
-        width: 65%;
+        width: 50%;
     }
     .profile-main{
         margin: 0 auto;
@@ -132,20 +132,10 @@ export default {
     }
     .user-image{
         float: left;
-        position: relative;
-        width: 25%;
     }
     .user-image img{
-        width: 100%;
-        height: 100%;
+        width: 80%;
+        height: 80%;
         border-radius: 50%;
-        margin-top: 35px;
-        padding-bottom: 2rem;
-    }
-    .user-data{
-        float: left;
-        width: 75%;
-        padding-left: 27px;
-        margin-top: 8rem;
     }
 </style>
