@@ -4,7 +4,7 @@
 
         <!-- form -->
         <form 
-            class="add-item_create-item" 
+            class="form1" 
             @submit.prevent="createNewItem"
         >
 
@@ -20,17 +20,17 @@
             <strong>Required</strong>
 
             <label for="item-name">Item Name</label>
-            <input class="input-response" id="item-name" v-model="itemName"/>
+            <input class="input-response field" id="item-name" v-model="itemName"/>
 
             <label for="price">Price</label>
-            <input class="input-response" id="price" type="number" v-model="price"/>
+            <input class="input-response field" id="price" type="number" v-model="price"/>
 
             <label for="desc">Description</label>
-            <textarea class="input-response-desc" id="desc" v-model="desc" rows="3"/>
+            <textarea class="input-response field" id="desc" v-model="desc" rows="3"/>
 
             <!-- upload images -->
             <div class="img-upload-div">
-                <label class="img-upload"><input type="file" multiple="multiple" @change="onFileChange($event.target.files)"/>+ Add photo</label>
+                <label class="img-upload field"><input type="file" multiple="multiple" @change="onFileChange($event.target.files)"/>+ Add photo</label>
                 <!-- <label class="img-upload-max" v-else><input type="file" disabled/>Max uploaded</label> -->
             </div>
             <div class="display-img">
@@ -40,10 +40,10 @@
             <!-- optional information -->
             <strong>Extra Information (Optional)</strong>
             <label for="alergens">Allergens</label>
-            <input class="input-response" id="allergens" v-model="allergens"/>
+            <input class="input-response field" id="allergens" v-model="allergens"/>
 
             <label for="diet">Dietary Restrictions</label>
-            <input class="input-response" id="diet" v-model="diet"/>
+            <input class="input-response field" id="diet" v-model="diet"/>
 
             <button class="add-item-button">+ Add Item</button>
 
@@ -129,23 +129,28 @@ export default {
     padding: 5% 0% 1% 0%;
 }
 
-.add-item_create-item {
+.form1 {
     display: flex;
     flex-direction: column;
     padding: 0% 30% 30% 30%;
 }
 
-.input-response {
-    border: 1px solid #000000;
-    border-radius: 2em;
-    height: 35px;
-    margin-bottom: 10px;
-}
-
-.input-response-desc {
-    border: 1px solid #000000;
-    border-radius: 2em;
-    margin-bottom: 10px;
+.field {
+    width: 100%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-bottom: 27px;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .img-upload-div {
@@ -158,7 +163,6 @@ input[type="file"] {
 
 .img-upload {
     text-align: center;
-    border: 1px solid #000000;
     border-radius: 2em;
     width: 100%;
     padding: 5%;
