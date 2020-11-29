@@ -85,11 +85,11 @@
         <p class="fieldName">Facebook URL</p>
         <input class="field" type="text" align="center" placeholder="www.facebook.com/username/">
         
-        <p class="fieldName">Store Name</p>
-        <input class="field" type="text" align="center" placeholder="Store Name">
+        <p class="fieldName">Profile Name</p>
+        <input class="field" type="text" align="center" placeholder="Bake n Shake">
 
-        <p class="fieldName">Store Description</p>
-        <textarea style="resize: none;" class="field" type="text" align="center" rows="5" placeholder="Store Description"></textarea>
+        <p class="fieldName">Profile Description</p>
+        <textarea style="resize: none;" class="field" type="text" align="center" rows="5" placeholder="My store is centered around selling delicious brownies."></textarea>
 
         <b-button class="submit" align="center">Sign up</b-button>
     </form>
