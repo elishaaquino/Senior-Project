@@ -2,8 +2,10 @@
    <div class="main">
     <p class="sign" align="center">Sign In</p>
     <b-form class="form1">
-      <input class="field" name="username" type="text" align="center" placeholder="Username">
-      <input class="field" type="password" align="center" placeholder="Password">
+        <p class="fieldName">Username</p>
+        <input class="field" name="username" type="text" align="center" placeholder="Username">
+        <p class="fieldName">Password</p>
+        <input class="field" type="password" align="center" placeholder="Password">
 
       <!-- the parameter after userAccount will be the userUsername parameter so that the user is taken to their user profile -->
       <b-button class="submit" href="userAccount/monica">Sign In</b-button>
@@ -28,6 +30,10 @@ div.signup{
 h6, a {
     display: inline;
 }
+.fieldName {
+    padding-left: 3rem;
+    margin-bottom: 0.25rem;
+}
 .main {
     background-color: #FFFFFF;
     width: 400px;
@@ -40,15 +46,12 @@ h6, a {
 .sign {
     padding-top: 40px;
     color: #000000;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: bold;
     font-size: 23px;
 }
 
 .field {
     width: 76%;
     color: rgb(38, 50, 56);
-    font-weight: 700;
     font-size: 14px;
     letter-spacing: 1px;
     background: rgba(136, 126, 126, 0.04);
@@ -58,19 +61,16 @@ h6, a {
     outline: none;
     box-sizing: border-box;
     border: 2px solid rgba(0, 0, 0, 0.02);
-    margin-bottom: 50px;
     margin-left: 46px;
     margin-bottom: 27px;
-    font-family: 'Ubuntu', sans-serif;
 }
 
 form.form1 {
-    padding-top: 40px;
+    padding-top: 20px;
 }
 
 .un:focus, .pass:focus {
     border: 2px solid rgba(0, 0, 0, 0.18) !important;
-    
 }
 
 .submit {
