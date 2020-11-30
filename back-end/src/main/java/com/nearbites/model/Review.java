@@ -3,8 +3,6 @@ package com.nearbites.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
 @Document(collection = "reviews")
 public class Review {
 
@@ -12,13 +10,14 @@ public class Review {
     private String id;
     private String username;
     private String review;
-    private Date date;
+    private String date;
 
     public Review() {}
 
-    public Review(String username, String review) {
+    public Review(String username, String review, String date) {
         this.username = username;
         this.review = review;
+        this.date = date;
     }
 
     public String getId() {
@@ -45,11 +44,11 @@ public class Review {
         this.review = review;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }
