@@ -3,23 +3,30 @@ package com.nearbites.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Document(collection = "users")
 public class User {
 
     @Id
     private String id;
     private String username;
+    private String password;
     private String firstName;
     private String lastName;
     private Contact contact;
     private String imageUrl;
 
+    private Set<Role> roles = new HashSet<>();
+
     public User() {
 
     }
 
-    public User(String username, String firstName, String lastName, Contact contact, String imageUrl) {
+    public User(String username, String password, String firstName, String lastName, Contact contact, String imageUrl) {
         this.username = username;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.contact = contact;
@@ -72,6 +79,22 @@ public class User {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
