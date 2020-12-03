@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import http from "../http-common";
 
 export default {
     name: "Add-Item",
@@ -52,7 +53,8 @@ export default {
 
            // checks if all required input fields are filled in
            if (this.review) {
-               console.log("Review form validated.");
+               let review = {"username": "delishas", "review": this.review};
+               http.post("reviews", review).then(resp => console.log(resp));
             }
             else {
                 this.errors = [];
