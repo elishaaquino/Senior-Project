@@ -21,7 +21,7 @@
             <label for="review">Review</label>
             <textarea class="input-response-review field" id="review" v-model="review" rows="5"/>
 
-            <button class="add-item-button">+ Add Review</button>
+            <b-button class="add-item-button" href="addreviewsuccess">+ Add Review</b-button>
 
         </form>
 
@@ -102,7 +102,7 @@ export default {
     padding:0.3em 1.2em;
     border: 2px solid #000000;
     border-radius:2em;
-    background-color:#ffffff;
+    background-color:#000000;
     width: 45%;
     margin-top: 5%;
     margin-left: 27.5%;

@@ -53,6 +53,7 @@
 
 <script>
 import http from "../http-common";
+import router from '../router';
 
 export default {
    name: "Add-Item",
@@ -82,7 +83,9 @@ export default {
                     formData.append("file", this.files[i]);
                     
                     http.post("storage/uploadImage",formData).then(resp => console.log(resp.data));
-                }     
+                }
+
+                router.push({ name: "additemsuccess" });
             }
             else {
                 this.errors = [];
