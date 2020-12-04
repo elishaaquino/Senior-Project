@@ -3,12 +3,12 @@
     <p class="sign" align="center">Sign In</p>
     <b-form class="form1">
         <p class="fieldName">Username</p>
-        <input class="field" name="username" type="text" align="center" placeholder="Username">
+        <input class="field" name="username" type="text" align="center" placeholder="Username" v-model="username">
         <p class="fieldName">Password</p>
-        <input class="field" type="password" align="center" placeholder="Password">
+        <input class="field" type="password" align="center" placeholder="Password" v-model="password">
 
       <!-- the parameter after userAccount will be the userUsername parameter so that the user is taken to their user profile -->
-      <b-button class="submit" href="userAccount/monica">Sign In</b-button>
+      <b-button class="submit" @click="signIn()">Sign In</b-button>
       <div class="signup">
         <h6><strong>Don't have an account? </strong></h6> <a href="/signUp">Sign Up</a>
       </div>
@@ -17,8 +17,22 @@
 </template>
 
 <script>
+import AuthService from '../service/AuthenticationService';
+
 export default {
-   name: "signIn"
+   name: "signIn",
+   data() {
+      return {
+         username: '',
+         password: ''
+      }
+   },
+   methods: {
+      signIn() { 
+         AuthService.login({username: this.username, password: this.password})
+            .then(this.$router.push('/userAccount/'+this.username));
+      }
+   }
 }
 </script>
 

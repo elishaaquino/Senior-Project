@@ -19,7 +19,7 @@
                   <em>User</em>
                </template>
                <b-dropdown-item href="#">Profile</b-dropdown-item>
-               <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+               <b-dropdown-item @click="logOut()">Sign Out</b-dropdown-item>
             </b-nav-item-dropdown>
             
             <b-nav-item to="/signIn" v-else>Sign In</b-nav-item>
@@ -33,10 +33,18 @@
 </template>
 
 <script>
+import AuthService from './service/AuthenticationService';
+
 export default {
    name: "app",
    computed: {
-      isLoggedIn: function() {return false}
+      isLoggedIn: function() {return localStorage.getItem('user');}
+   },
+   methods: {
+      logOut() {
+         AuthService.logout();
+         this.$router.push('/signin');
+      }
    }
 }
 </script>
