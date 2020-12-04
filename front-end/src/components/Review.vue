@@ -7,7 +7,7 @@
             </div>
         </div>
 
-        <div class="col">
+        <div class="col-11">
             <div class="content">
                 {{ content }}
             </div>

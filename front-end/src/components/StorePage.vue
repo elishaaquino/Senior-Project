@@ -1,43 +1,58 @@
 <template>
    <div>
-        <div class="profile-main">
+        <div class="container profile-main">
             <div class="profile-header">
-                <div class="container mt-5 user-detail">
-                    <div class="row">
-                        <div class="col-lg-2 user-image">
-                            <img src="../../public/images/profilePicture.jpg">
-                            <br>
-                        </div>
-                        <div class="col-lg-4 user-data">
-                            <h2><strong>{{ storename }}</strong></h2>
-                            <h4>By {{ seller }}</h4>
-                            <b-button class="button3 disabled" href="../additem">Contact Seller</b-button>
-                        </div>
-                        <div class="col-lg-6">
-                            <p> Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl eros, 
-                                pulvinar facilisis justo mollis, auctor consequat urna. Morbi a bibendum metus. 
-                                Donec scelerisque sollicitudin enim eu venenatis. Duis tincidunt laoreet ex, 
-                                in pretium orci vestibulum eget.
-                            </p>
-                            <p>San Diego, CA</p>
-                            <p>13 Items</p>
+
+                <!-- user information -->
+                <div class="row mt-5">
+                    <div class="col-lg-2 user-image">
+                        <img src="../../public/images/profilePicture.jpg">
+                        <br>
+                    </div>
+                    <div class="col-lg-4 user-data">
+                        <h2><strong>{{ seller }} </strong></h2>
+                        <b-button class="button3 disabled" href="../additem">Contact Seller</b-button>
+                    </div>
+                    <div class="col-lg-6">
+                        <p> Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl eros, 
+                            pulvinar facilisis justo mollis, auctor consequat urna. Morbi a bibendum metus. 
+                            Donec scelerisque sollicitudin enim eu venenatis. Duis tincidunt laoreet ex, 
+                            in pretium orci vestibulum eget.
+                        </p>
+                        <p>San Diego, CA</p>
+                        <p>13 Items</p>
+                    </div>
+                </div>
+
+                <!-- display items -->
+                <div class="row mt-5">
+                    <div class="col-lg-12">
+                        <div v-if="btn_id === 0">
+                            <Item 
+                                v-for="item in sellingItems" 
+                                :key="item.id"
+                                :itemName="item.itemName"
+                                :price="item.price"
+                                :quantity="item.quantity"/>
                         </div>
                     </div>
                 </div>
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div v-if="btn_id === 0">
-                                <Item 
-                                    v-for="item in sellingItems" 
-                                    :key="item.id"
-                                    :itemName="item.itemName"
-                                    :price="item.price"
-                                    :quantity="item.quantity"/>
-                            </div>
-                        </div>
-                    </div>
+
+                <!-- reviews -->
+                <div class="row mb-4 mt-5">
+                    <div class="col-1"><strong>Reviews</strong></div>
                 </div>
+                <div>
+                    <Review 
+                        v-for="r in reviews"
+                        :key="r.id"
+                        :userName="r.username"
+                        :date="r.date"
+                        :content="r.content"
+                        :imgUrl="r.img"
+                    />
+                </div>
+
             </div>
         </div>
    </div>
@@ -45,14 +60,15 @@
 
 <script>
 import Item from "./Item";
+import Review from "./Review";
 
 export default {
     name: 'storepage',
-    components: {Item},
+    components: {Item, Review},
         data () {
             return {
-                seller: "",
-                storename: "",
+                seller: '',
+                storename: '',
                 btn_id: 0,
                 sellingItems: [
                     { id: 1, itemName: "Brownies", price: "$12", quantity: "1 dozen"}, 
@@ -62,6 +78,11 @@ export default {
                     { id: 5, itemName: "Brownies", price: "$12", quantity: "1 dozen"},
                     { id: 6, itemName: "Brownies", price: "$12", quantity: "1 dozen"},
                     { id: 7, itemName: "Brownies", price: "$12", quantity: "1 dozen"}
+                ],
+                reviews: [
+                    { id: 1, username: "Maggie Chang", date: "11/11/20", content: "Reliable!", img: "profilePicture.jpg" },
+                    { id: 2, username: "Monica Andres", date: "11/12/20", content: "Great vegan options", img: "profilePicture.jpg" },
+                    { id: 3, username: "Elisha Aquino", date: "11/14/20", content: "Responds quickly!", img: "profilePicture.jpg" }
                 ]
             }
         },
@@ -71,7 +92,7 @@ export default {
             }
         },
         created() {
-            this.seller = this.$route.params.seller;
+            this.seller = this.$route.params.seller_firstName + " " + this.$route.params.seller_lastName;
             this.storename = this.$route.params.storename;
         },
     };
@@ -80,7 +101,6 @@ export default {
 <style scoped>
     .container {
         display: flex;
-        align-items: center;
     }
     .row {
         position: relative;
