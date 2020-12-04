@@ -3,7 +3,7 @@ import Router from "vue-router";
 
 Vue.use(Router);
 
-export default new Router({
+export const router = new Router({
    mode: "history",
    routes: [
       {
@@ -56,3 +56,17 @@ export default new Router({
       }
    ]
 });
+
+router.beforeEach((to, from, next) => {
+   const publicPages = ['/signUp', '/signin', '/', '/results', '/displayitem'];
+   const authRequired = !publicPages.includes(to.path);
+   const loggedIn = localStorage.getItem('user');
+ 
+   // trying to access a restricted page + not logged in
+   // redirect to login page
+   if (authRequired && !loggedIn) {
+     next('/signin');
+   } else {
+     next();
+   }
+ });
