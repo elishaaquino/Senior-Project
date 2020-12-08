@@ -17,13 +17,13 @@
                 <strong>{{itemName}}</strong>
                 <p>{{price}}</p>
                 <p>{{amount}}</p>
-                <router-link :to="{ name: 'storepage', params: { storename: storename, seller: seller } }">
+                <router-link :to="{ name: 'storepage', params: { storename: seller_firstName + seller_lastName, seller_firstName: seller_firstName, seller_lastName: seller_lastName } }">
                     <div class="row mt-5 align-items-center">
                         <div class="usr-img col-3 pr-0">
                             <img src="../../public/images/profilePicture.jpg">
                         </div>
                         <div class="col pl-0">
-                            <strong>Made by {{ seller }}</strong>
+                            <strong>Made by {{ seller_firstName }}</strong>
                         </div>
                     </div>
                 </router-link>
@@ -75,8 +75,8 @@ export default {
   },
   data: () => {
     return {
-        seller: "Monica",
-        storename: "Bake n shake",
+        seller_firstName: "Monica",
+        seller_lastName: "Andres",
         itemName: 'Oreo Brownies',
         price: '$12',
         amount: '12 pieces',

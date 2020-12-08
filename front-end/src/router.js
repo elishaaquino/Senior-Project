@@ -53,6 +53,16 @@ export const router = new Router({
          path: "/store/:storename",
          name: "storepage",
          component: () => import("./components/StorePage")
+      },
+      {
+         path: "/additemsuccess",
+         name: "additemsuccess",
+         component: () => import("./components/Success-AddItem")
+      },
+      {
+         path: "/addreviewsuccess",
+         name: "addreviewsuccess",
+         component: () => import("./components/Success-AddReview")
       }
    ]
 });
