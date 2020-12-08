@@ -53,7 +53,7 @@
 
 <script>
 import http from "../http-common";
-import router from '../router';
+import { router } from '../router';
 
 export default {
    name: "Add-Item",
