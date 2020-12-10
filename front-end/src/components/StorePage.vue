@@ -10,7 +10,7 @@
                         <br>
                     </div>
                     <div class="col-lg-4 user-data">
-                        <h2><strong>{{ seller }} </strong></h2>
+                        <h2><strong> {{ seller }} </strong></h2>
                         <b-button class="button3 disabled" href="../additem">Contact Seller</b-button>
                     </div>
                     <div class="col-lg-6">
@@ -92,8 +92,7 @@ export default {
             }
         },
         created() {
-            this.seller = this.$route.params.seller_firstName + " " + this.$route.params.seller_lastName;
-            this.storename = this.$route.params.storename;
+            this.seller = localStorage.storename;
         },
     };
 </script>

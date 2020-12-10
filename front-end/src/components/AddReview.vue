@@ -35,24 +35,28 @@ import http from "../http-common";
 export default {
     name: "Add-Item",
     data() {
+
        return {
             errors: [],
             review: '',
             itemName: "",
             seller: ""
        }
+
     },
     created() {
-        this.itemName = this.$route.params.itemName;
-        this.seller = this.$route.params.seller;
+
+        this.seller = localStorage.sellerfirstname;
+        this.itemName = localStorage.itemname;
+        
     },
     methods: {
        
         // upon submission
-       createNewItem: function(e) {
+        createNewItem: function(e) {
 
-           // checks if all required input fields are filled in
-           if (this.review) {
+            // checks if all required input fields are filled in
+            if (this.review) {
                let review = {"username": "delishas", "review": this.review};
                http.post("reviews", review).then(resp => console.log(resp));
             }
@@ -66,7 +70,7 @@ export default {
                 e.preventDefault();
             }
         }
-   }
+    }
 };
 </script>
 
