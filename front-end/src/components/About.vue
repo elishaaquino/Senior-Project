@@ -63,7 +63,7 @@
                     <!-- popular-item -->
                     <div class="popular-items">
                         <div class="image-wrapper">
-                            <a href="users"><img class="img-fluid" src="../../public/images/popular-Item2.png" href="#users" alt="noodles"></a>
+                            <a href="displayitem"><img class="img-fluid" src="../../public/images/popular-Item2.png" href="#users" alt="noodles"></a>
                         </div> <!-- end of image wrapper -->
                     </div> <!-- end of popular-items -->
                     <!-- end of popular-item -->

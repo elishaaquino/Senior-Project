@@ -17,16 +17,18 @@
                 <strong>{{itemName}}</strong>
                 <p>{{price}}</p>
                 <p>{{amount}}</p>
-                <router-link :to="{ name: 'storepage', params: { storename: seller_firstName + seller_lastName, seller_firstName: seller_firstName, seller_lastName: seller_lastName } }">
-                    <div class="row mt-5 align-items-center">
-                        <div class="usr-img col-3 pr-0">
-                            <img src="../../public/images/profilePicture.jpg">
+                <div @click="toaddstorepage(seller_firstName, seller_lastName)">
+                    <router-link :to="{ name: 'storepage', params: { storename: seller_firstName+seller_lastName } }">
+                        <div class="row mt-5 align-items-center">
+                            <div class="usr-img col-3 pr-0">
+                                <img src="../../public/images/profilePicture.jpg">
+                            </div>
+                            <div class="col pl-0">
+                                <strong>Made by {{ seller_firstName }}</strong>
+                            </div>
                         </div>
-                        <div class="col pl-0">
-                            <strong>Made by {{ seller_firstName }}</strong>
-                        </div>
-                    </div>
-                </router-link>
+                    </router-link>
+                </div>
                 <div class="row mt-3 pl-3">
                     <b-button class="contact-button">Message Seller</b-button>
                 </div>
@@ -46,9 +48,11 @@
         <div class="row mb-4">
             <div class="col-1"><strong>Reviews</strong></div>
             <div class="col-3">
-                <router-link :to="{ name: 'addreview', params: { itemName: itemName, seller: seller} }">
-                    <b-button class="add-review-button">+ Add Review</b-button>
-                </router-link>
+                <div @click="toaddreview(seller_firstName, itemName)">
+                    <router-link :to="{ name: 'addreview' }">
+                        <b-button class="add-review-button">+ Add Review</b-button>
+                    </router-link>
+                </div>
             </div>
         </div>
         <div>
@@ -69,33 +73,43 @@
 import Review from "./Review";
 
 export default {
-  name: "Display-Item",
-  components: {
+    name: "Display-Item",
+    components: {
     Review
-  },
-  data: () => {
-    return {
-        seller_firstName: "Monica",
-        seller_lastName: "Andres",
-        itemName: 'Oreo Brownies',
-        price: '$12',
-        amount: '12 pieces',
-        allergens: "Peanuts, milk, eggs",
-        diet: "Gluten-free",
-        images: [
-            "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-3.jpg",
-            "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-7.jpg",
-            "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-10.jpg",
-            "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-5.jpg",
-            "https://confessionsofabakingqueen.com/wp-content/uploads/2020/07/oreo-brownies-on-a-black-wire-rack-on-a-grey-surfac-1-of-1.jpg"
-        ],
-        reviews: [
-            { id: 1, username: "Maggie Chang", date: "11/11/20", content: "Yummy!", img: "profilePicture.jpg" },
-            { id: 2, username: "Monica Andres", date: "11/12/20", content: "I'm allergic :(", img: "profilePicture.jpg" },
-            { id: 3, username: "Elisha Aquino", date: "11/14/20", content: "Delicious!", img: "profilePicture.jpg" }
-        ]
-    };
-  }
+    },
+    data: () => {
+        return {
+            seller_firstName: "Monica",
+            seller_lastName: "Andres",
+            itemName: 'Oreo Brownies',
+            price: '$12',
+            amount: '12 pieces',
+            allergens: "Peanuts, milk, eggs",
+            diet: "Gluten-free",
+            images: [
+                "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-3.jpg",
+                "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-7.jpg",
+                "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-10.jpg",
+                "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-5.jpg",
+                "https://confessionsofabakingqueen.com/wp-content/uploads/2020/07/oreo-brownies-on-a-black-wire-rack-on-a-grey-surfac-1-of-1.jpg"
+            ],
+            reviews: [
+                { id: 1, username: "Maggie Chang", date: "11/11/20", content: "Yummy!", img: "profilePicture.jpg" },
+                { id: 2, username: "Monica Andres", date: "11/12/20", content: "I'm allergic :(", img: "profilePicture.jpg" },
+                { id: 3, username: "Elisha Aquino", date: "11/14/20", content: "Delicious!", img: "profilePicture.jpg" }
+            ]
+        };
+    },
+    methods: {
+        toaddreview(seller_firstName, itemName) {
+            localStorage.setItem('sellerfirstname', seller_firstName);
+            localStorage.setItem('itemname', itemName);
+            this.$router.push('/addreview');
+        },
+        toaddstorepage(seller_firstName, seller_lastName) {
+            localStorage.setItem('storename', seller_firstName + " " + seller_lastName);
+        }
+    }
 };
 </script>
 
