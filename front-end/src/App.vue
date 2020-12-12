@@ -33,16 +33,14 @@
 </template>
 
 <script>
-import AuthService from './service/AuthenticationService';
-
 export default {
    name: "app",
    computed: {
-      isLoggedIn: function() {return localStorage.getItem('user');}
+      isLoggedIn() {return this.$store.state.auth.status.loggedIn;}
    },
    methods: {
       logOut() {
-         AuthService.logout();
+         this.$store.dispatch('auth/logout');
          this.$router.push('/signin');
       }
    }
