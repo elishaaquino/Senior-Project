@@ -44,6 +44,7 @@
 
 <script>
 import Item from "./Item";
+import ItemService from '../service/ItemService';
 
 export default {
     name: 'userAccount',
@@ -68,11 +69,27 @@ export default {
         },
         methods: {
             set_SelectedButton(value){
+
                 this.btn_id=value;
+
+            },
+
+            getItems() {
+
+                // var userId = JSON.parse(localStorage.user)["id"];
+
+                ItemService.getItemUserAccount().then(
+                    response => {
+                        console.log(response.data);
+                    }
+                );
             }
         },
         created() {
-            this.userUsername = this.$route.params.userUsername;
+
+            var userId = JSON.parse(localStorage.user)["id"];
+
+            this.getItems(userId);
         },
     };
 </script>

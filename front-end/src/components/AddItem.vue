@@ -23,7 +23,10 @@
             <input class="input-response field" id="item-name" v-model="itemName"/>
 
             <label for="price">Price</label>
-            <input class="input-response field" id="price" type="number" v-model="price"/>
+            <input class="input-response field" id="price" v-model="price" type="number"/>
+
+            <label for="quant">Quanity</label>
+            <input class="input-response field" id="quant" v-model="quant"/>
 
             <label for="desc">Description</label>
             <textarea class="input-response field" id="desc" v-model="desc" rows="3"/>
@@ -53,7 +56,7 @@
 
 <script>
 import http from "../http-common";
-import { router } from '../router';
+import ItemService from '../service/ItemService';
 
 export default {
    name: "Add-Item",
@@ -64,6 +67,7 @@ export default {
            errors: [],
            itemName: '',
            price: '',
+           quant: '',
            desc: '',
            allergens: '',
            diet: ''
@@ -72,20 +76,48 @@ export default {
    methods: {
        
         // upon submission
-       createNewItem: function(e) {
+        createNewItem: function(e) {
 
-           // checks if all required input fields are filled in
-           if (this.itemName && this.price && this.desc && this.files.length != 0) {
+            // checks if all required input fields are filled in
+            if (this.itemName && this.price && this.quant && this.desc && this.files.length != 0) {
+               
+                var photoURLS = []
 
-               // uploads images to S3
+                // uploads images to S3
                 for (let i = 0; i < this.files.length; i++) {
                     const formData = new FormData();
                     formData.append("file", this.files[i]);
                     
-                    http.post("storage/uploadImage",formData).then(resp => console.log(resp.data));
+                    (async () => {
+                        await http.post("storage/uploadImage",formData).then(
+                            resp => {
+                                photoURLS.push(resp.data);
+                            }
+                        );
+                    })();
                 }
 
-                router.push({ name: "additemsuccess" });
+                setTimeout(() => { 
+                    console.log(photoURLS); 
+
+                    var userId = JSON.parse(localStorage.user)["id"];
+
+                    var item = {
+                        ownerId: userId, 
+                        name: this.itemName, 
+                        price: this.price, 
+                        quantity: this.quant,
+                        extraInfo: {
+                            allergens: this.allergens, 
+                            dietaryRestric: this.diet
+                        },
+                        photos: photoURLS, 
+                        reviews: [null]
+                    }
+                    
+                    ItemService.additem(item).then(this.$router.push('/additemsuccess'));
+
+                }, 1000);
             }
             else {
                 this.errors = [];
@@ -96,6 +128,10 @@ export default {
 
                 if (!this.price) {
                     this.errors.push('Price of item required');
+                }
+
+                if (!this.quant) {
+                    this.errors.push('Quantity of item required');
                 }
 
                 if (!this.desc) {
@@ -109,6 +145,7 @@ export default {
                 e.preventDefault();
             }
         },
+
         // adds uploaded images to list
         onFileChange(f) {
 

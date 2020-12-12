@@ -29,7 +29,9 @@ export default {
    },
    methods: {
       signIn() { 
-         AuthService.login({username: this.username, password: this.password})
+          var data = {username: this.username, password: this.password};
+          
+         AuthService.login(data)
             .then(this.$router.push('/userAccount/'+this.username));
       }
    }

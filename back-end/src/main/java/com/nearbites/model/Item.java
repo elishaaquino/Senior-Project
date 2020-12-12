@@ -16,14 +16,14 @@ public class Item {
     private Double price;
     private String quantity;
     private ExtraInfo extraInfo;
-    private List<URL> photos;
+    private List<String> photos;
     private List<Review> reviews;
 
     public Item() {
 
     }
 
-    public Item(String ownerId, String name, Double price, String quantity, ExtraInfo extraInfo, List<URL> photos, List<Review> reviews) {
+    public Item(String ownerId, String name, Double price, String quantity, ExtraInfo extraInfo, List<String> photos, List<Review> reviews) {
         this.ownerId = ownerId;
         this.name = name;
         this.price = price;
@@ -81,11 +81,11 @@ public class Item {
         this.extraInfo = extraInfo;
     }
 
-    public List<URL> getPhotos() {
+    public List<String> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(List<URL> photos) {
+    public void setPhotos(List<String> photos) {
         this.photos = photos;
     }
 

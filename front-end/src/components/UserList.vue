@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     refreshUsers() {
-      UserDataService.retrieveAllUsers() //HARDCODED
+      UserDataService.retrieveAllUsers()
         .then(response => {
           this.users = response.data;
         });
