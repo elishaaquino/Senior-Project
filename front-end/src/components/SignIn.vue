@@ -17,22 +17,29 @@
 </template>
 
 <script>
-import AuthService from '../service/AuthenticationService';
 
 export default {
    name: "signIn",
    data() {
       return {
          username: '',
-         password: ''
+         password: '',
+         message: ''
       }
    },
    methods: {
       signIn() { 
-          var data = {username: this.username, password: this.password};
-          
-         AuthService.login(data)
-            .then(this.$router.push('/userAccount/'+this.username));
+         this.$store.dispatch('auth/login', {username: this.username, password: this.password}).then(
+            () => {
+              this.$router.push('/userAccount/'+this.username);
+            },
+            error => {
+              this.message =
+                (error.response && error.response.data) ||
+                error.message ||
+                error.toString();
+            }
+          );
       }
    }
 }
