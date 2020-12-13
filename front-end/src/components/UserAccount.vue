@@ -22,6 +22,7 @@
                                 <Item 
                                     v-for="item in sellingItems" 
                                     :key="item.id"
+                                    :id="item.id"
                                     :itemName="item.name"
                                     :price=item.price
                                     :quantity="item.quantity"
@@ -31,6 +32,7 @@
                                 <Item 
                                     v-for="item in buyingItems" 
                                     :key="item.id"
+                                    :id="item.id"
                                     :itemName="item.name"
                                     :price=item.price
                                     :quantity="item.quantity"

@@ -98,7 +98,6 @@ export default {
                 }
 
                 setTimeout(() => { 
-                    console.log(photoURLS); 
 
                     var userId = JSON.parse(localStorage.user)["id"];
 
