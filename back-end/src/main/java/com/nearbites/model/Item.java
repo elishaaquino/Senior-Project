@@ -97,4 +97,6 @@ public class Item {
         this.reviews = reviews;
     }
 
+    public void addReview(Review review) {this.reviews.add(0, review);}
+
 }
