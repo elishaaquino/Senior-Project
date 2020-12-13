@@ -48,8 +48,8 @@
         <div class="row mb-4">
             <div class="col-1"><strong>Reviews</strong></div>
             <div class="col-3">
-                <div @click="toaddreview(seller_firstName, itemName)">
-                    <router-link :to="{ name: 'addreview' }">
+                <div @click="toaddreview(seller_firstName, itemName, id)">
+                    <router-link :to="{ name: 'addreview', params: { id: id } }">
                         <b-button class="add-review-button">+ Add Review</b-button>
                     </router-link>
                 </div>
@@ -79,6 +79,7 @@ export default {
     },
     data: () => {
         return {
+            id: "5fd4451b3b21cb62010ccc69", //item id
             seller_firstName: "Monica",
             seller_lastName: "Andres",
             itemName: 'Oreo Brownies',
@@ -101,10 +102,10 @@ export default {
         };
     },
     methods: {
-        toaddreview(seller_firstName, itemName) {
+        toaddreview(seller_firstName, itemName, id) {
             localStorage.setItem('sellerfirstname', seller_firstName);
             localStorage.setItem('itemname', itemName);
-            this.$router.push('/addreview');
+            this.$router.push('/addreview/' + id);
         },
         toaddstorepage(seller_firstName, seller_lastName) {
             localStorage.setItem('storename', seller_firstName + " " + seller_lastName);
