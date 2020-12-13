@@ -76,8 +76,6 @@ export default {
 
             getItems() {
 
-                // var userId = JSON.parse(localStorage.user)["id"];
-
                 ItemService.getItemUserAccount().then(
                     response => {
                         console.log(response.data);
