@@ -62,11 +62,9 @@ export default {
 
                 Promise.all([
                   this.addReviewToItem(id, review),
-                  this.addReviewToUser(id)
-                ]).then((resps) => console.log(resps)).then(this.$router.push('/addreviewsuccess'));
-                //http.put('/users/addReview/'+id);
-                //http.post("reviews", review).then(this.$router.push('/addreviewsuccess'));
-                //http.put("/itemReviews/"+id, review);
+                  this.addReviewToUser(id, review)
+                ]).then((resps) => console.log(resps)).then(this.$router.push('/addreviewsuccess'))
+                .catch(e => console.error(e.message));
             }
             else {
                 this.errors = [];
@@ -81,8 +79,8 @@ export default {
         addReviewToItem(id, review) {
           return http.put("/itemReviews/"+id, review);
         },
-        addReviewToUser(id) {
-          return http.put('/users/addReview/'+id);
+        addReviewToUser(id, review) {
+          return http.put('/users/addReview/'+id, review);
         }
     }
 };
