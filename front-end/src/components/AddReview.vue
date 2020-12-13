@@ -1,7 +1,7 @@
 <template>
 
     <div class="add-item">
-        <strong><h2 class="add-item-header">Add Review for {{ itemName }} made by {{ seller_firstName }}</h2></strong>
+        <strong><h2 class="add-item-header">Add Review for {{ itemName }} made by {{ seller }}</h2></strong>
 
         <!-- form -->
         <form 
@@ -35,6 +35,7 @@ import http from "../http-common";
 export default {
     name: "Add-Item",
     data() {
+
        return {
             errors: [],
             review: '',
@@ -42,10 +43,11 @@ export default {
             itemName: "",
             seller_firstName: ""
        }
+
     },
     created() {
-        this.itemName = this.$route.params.itemName;
-        this.seller_firstName = this.$route.params.seller_firstName;
+        this.itemName = localStorage.itemname;
+        this.seller = localStorage.sellerfirstname;
         this.id = this.$route.params.id;
     },
     methods: {
@@ -71,7 +73,7 @@ export default {
                 e.preventDefault();
             }
         }
-   }
+    }
 };
 </script>
 
