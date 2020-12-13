@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin(origins = { "http://localhost:8081" })
@@ -40,10 +42,14 @@ public class ItemController {
     @PutMapping("/itemReviews/{id}")
     public ResponseEntity<Item> addReviewForItem(@RequestBody Review review, @PathVariable String id) {
         try {
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
             Item _item = itemRepository.findById(id)
             .orElseThrow(() -> new Exception("Item not found with id: " + id));
 
-            _item.addReview(review);
+            _item.addReview(new Review(review.getUsername(),
+                    review.getReview(), formatter.format(date)));
             _item = itemRepository.save(_item);
 
             return new ResponseEntity<>(_item, HttpStatus.CREATED);

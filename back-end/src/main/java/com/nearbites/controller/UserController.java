@@ -20,6 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -107,12 +108,16 @@ public class UserController {
     @PutMapping("/addReview/{id}")
     public ResponseEntity<User> addReviewForUser(@RequestBody Review review, @PathVariable String id) {
         try {
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
             Item _item = itemRepository.findById(id)
                     .orElseThrow(() -> new Exception("Item not found with id: " + id));
             User _user = userRepository.findById(_item.getOwnerId())
                     .orElseThrow(() -> new Exception("User not found for item with id: " + id));
 
-            _user.addReview(review);
+            _user.addReview(new Review(review.getUsername(),
+                    review.getReview(), formatter.format(date)));
             _user = userRepository.save(_user);
 
             return new ResponseEntity<>(_user, HttpStatus.CREATED);
