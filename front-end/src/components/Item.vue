@@ -1,5 +1,6 @@
 <template>
    <div class="item">
+      <router-link :to="{ name: 'displayitem', params: { id: id } }">
       <div class="item-pic">
          <img :src="photo"/>
       </div>
@@ -9,6 +10,7 @@
       <div class="item-info">
          ${{ price }} for {{ quantity }}
       </div>
+      </router-link>
    </div>
 </template>
 
@@ -16,6 +18,10 @@
 export default {
   name: "Item",
   props: {
+     id: {
+      type: String,
+      required: true
+    },
     itemName: {
       type: String,
       required: true
@@ -49,7 +55,11 @@ export default {
       transform: scale(1.1, 1.1);
    }
    .item-name {
+      color: black;
       font-weight: bold;
+   }
+   .item-info {
+      color: black;
    }
    display: inline-block;
    width: 14rem;
