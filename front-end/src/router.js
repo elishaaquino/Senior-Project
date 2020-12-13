@@ -31,7 +31,8 @@ export const router = new Router({
          component: () => import("./components/AddItem")
       },
       {
-         path: "/displayitem",
+         path: "/displayitem/:id",
+         name: "displayitem",
          component: () => import("./components/DisplayItem")
       },
       {
@@ -45,7 +46,7 @@ export const router = new Router({
          component: () => import("./components/SignUp")
       },
       {
-         path: "/addreview",
+         path: "/addreview/:id",
          name: "addreview",
          component: () => import("./components/AddReview")
       },

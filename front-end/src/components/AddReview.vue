@@ -1,12 +1,12 @@
 <template>
 
     <div class="add-item">
-        <strong><h2 class="add-item-header">Add Review for {{ itemName }} by {{ seller }}.</h2></strong>
+        <strong><h2 class="add-item-header">Add Review for {{ itemName }} made by {{ seller_firstName }}</h2></strong>
 
         <!-- form -->
         <form 
             class="form1" 
-            @submit.prevent="createNewItem"
+            @submit.prevent="addReview"
         >
 
             <!-- error checking -->
@@ -21,7 +21,7 @@
             <label for="review">Review</label>
             <textarea class="input-response-review field" id="review" v-model="review" rows="5"/>
 
-            <b-button class="add-item-button" href="addreviewsuccess">+ Add Review</b-button>
+            <b-button class="add-item-button" @click="addReview()">+ Add Review</b-button>
 
         </form>
 
@@ -38,23 +38,28 @@ export default {
        return {
             errors: [],
             review: '',
+            id: "",
             itemName: "",
-            seller: ""
+            seller_firstName: ""
        }
     },
     created() {
         this.itemName = this.$route.params.itemName;
-        this.seller = this.$route.params.seller;
+        this.seller_firstName = this.$route.params.seller_firstName;
+        this.id = this.$route.params.id;
     },
     methods: {
        
-        // upon submission
-       createNewItem: function(e) {
+        // upon add review submission
+       addReview: function(e) {
 
            // checks if all required input fields are filled in
            if (this.review) {
-               let review = {"username": "delishas", "review": this.review};
-               http.post("reviews", review).then(resp => console.log(resp));
+                let review = {"username": JSON.parse(localStorage.user)["username"], "review": this.review};
+                let id = this.id;
+
+                http.post("reviews", review).then(this.$router.push('/addreviewsuccess'));
+                http.put("/itemReviews/"+id, review);
             }
             else {
                 this.errors = [];

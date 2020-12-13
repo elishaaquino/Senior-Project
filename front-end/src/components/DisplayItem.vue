@@ -46,7 +46,7 @@
         <div class="row mb-4">
             <div class="col-1"><strong>Reviews</strong></div>
             <div class="col-3">
-                <router-link :to="{ name: 'addreview', params: { itemName: itemName, seller: seller} }">
+                <router-link :to="{ name: 'addreview', params: { itemName: itemName, seller_firstName: seller_firstName, id: id} }">
                     <b-button class="add-review-button">+ Add Review</b-button>
                 </router-link>
             </div>
@@ -75,6 +75,7 @@ export default {
   },
   data: () => {
     return {
+        id: "5fd4451b3b21cb62010ccc69", //item id
         seller_firstName: "Monica",
         seller_lastName: "Andres",
         itemName: 'Oreo Brownies',
