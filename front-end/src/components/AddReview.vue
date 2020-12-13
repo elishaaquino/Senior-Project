@@ -60,8 +60,11 @@ export default {
                 let review = {"username": JSON.parse(localStorage.user)["username"], "review": this.review};
                 let id = this.id;
 
-                http.post("reviews", review).then(this.$router.push('/addreviewsuccess'));
-                http.put("/itemReviews/"+id, review);
+                Promise.all([
+                  this.addReviewToItem(id, review),
+                  this.addReviewToUser(id, review)
+                ]).then((resps) => console.log(resps)).then(this.$router.push('/addreviewsuccess'))
+                .catch(e => console.error(e.message));
             }
             else {
                 this.errors = [];
@@ -72,6 +75,12 @@ export default {
 
                 e.preventDefault();
             }
+        },
+        addReviewToItem(id, review) {
+          return http.put("/itemReviews/"+id, review);
+        },
+        addReviewToUser(id, review) {
+          return http.put('/users/addReview/'+id, review);
         }
     }
 };
