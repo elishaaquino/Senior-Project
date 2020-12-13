@@ -30,7 +30,7 @@ public class ItemController {
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
         try {
             Item _item = itemRepository.save(new Item(item.getOwnerId(), item.getName(), item.getPrice(), item.getQuantity(), item.getExtraInfo(),
-                    item.getPhotos(), item.getReviews()));
+                    item.getPhotos(), new ArrayList<>()));
             return new ResponseEntity<>(_item, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>((Item) null, HttpStatus.INTERNAL_SERVER_ERROR);

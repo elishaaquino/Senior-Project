@@ -1,8 +1,7 @@
 package com.nearbites.controller;
 
-import com.nearbites.model.ERole;
-import com.nearbites.model.Role;
-import com.nearbites.model.User;
+import com.nearbites.model.*;
+import com.nearbites.repository.ItemRepository;
 import com.nearbites.repository.RoleRepository;
 import com.nearbites.repository.UserRepository;
 import com.nearbites.service.authentication.UserDetailsImpl;
@@ -21,10 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = { "http://localhost:8081" })
@@ -42,6 +38,9 @@ public class UserController {
     RoleRepository roleRepository;
 
     @Autowired
+    ItemRepository itemRepository;
+
+    @Autowired
     PasswordEncoder encoder;
 
     @Autowired
@@ -57,7 +56,7 @@ public class UserController {
 
         // Create new user's account
         User newUser = new User(user.getUsername(), encoder.encode(user.getPassword()),
-                user.getFirstName(), user.getLastName(), user.getContact(), user.getImageUrl());
+                user.getFirstName(), user.getLastName(), user.getContact(), user.getImageUrl(), new ArrayList<>());
 
         Set<Role> roles = new HashSet<>();
         Role role = new Role(ERole.ROLE_USER);
@@ -103,5 +102,22 @@ public class UserController {
 
         userRepository.findAll().forEach(users::add);
         return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @PutMapping("/addReview/{id}")
+    public ResponseEntity<User> addReviewForUser(@RequestBody Review review, @PathVariable String id) {
+        try {
+            Item _item = itemRepository.findById(id)
+                    .orElseThrow(() -> new Exception("Item not found with id: " + id));
+            User _user = userRepository.findById(_item.getOwnerId())
+                    .orElseThrow(() -> new Exception("User not found for item with id: " + id));
+
+            _user.addReview(review);
+            _user = userRepository.save(_user);
+
+            return new ResponseEntity<>(_user, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>((User) null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

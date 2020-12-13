@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Document(collection = "users")
@@ -17,6 +18,7 @@ public class User {
     private String lastName;
     private Contact contact;
     private String imageUrl;
+    private List<Review> reviews;
 
     private Set<Role> roles = new HashSet<>();
 
@@ -24,13 +26,15 @@ public class User {
 
     }
 
-    public User(String username, String password, String firstName, String lastName, Contact contact, String imageUrl) {
+    public User(String username, String password, String firstName, String lastName, Contact contact, String imageUrl,
+                List<Review> reviews) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.contact = contact;
         this.imageUrl = imageUrl;
+        this.reviews = reviews;
     }
 
     public String getId() {
@@ -95,6 +99,18 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void addReview(Review review) {
+        this.reviews.add(0, review);
     }
 
     @Override
