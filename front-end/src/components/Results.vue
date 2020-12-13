@@ -5,6 +5,7 @@
             <Item 
                v-for="item in items" 
                :key="item.id"
+               :id="item.id"
                :itemName="item.itemName"
                :price="item.price"
                :quantity="item.quantity"/>
@@ -22,14 +23,14 @@ export default {
    data () {
       return {
          items: [
-            { id: 1, itemName: "Brownies", price: "$12", quantity: "1 dozen"}, 
-            { id: 2, itemName: "Cookies", price: "$12", quantity: "1 dozen"},
-            { id: 3, itemName: "Lemon Bar", price: "$12", quantity: "1 dozen"},
-            { id: 4, itemName: "Brownies", price: "$12", quantity: "1 dozen"},
-            { id: 5, itemName: "Fudge Brownies", price: "$12", quantity: "1 dozen"},
-            { id: 6, itemName: "Pizookie", price: "$12", quantity: "1"},
-            { id: 7, itemName: "Dulce de leche", price: "$12", quantity: "1 dozen"},
-            { id: 8, itemName: "Ube Cookies", price: "$12", quantity: "1 dozen"},
+            { id: "1", itemName: "Brownies", price: "$12", quantity: "1 dozen"}, 
+            { id: "2", itemName: "Cookies", price: "$12", quantity: "1 dozen"},
+            { id: "3", itemName: "Lemon Bar", price: "$12", quantity: "1 dozen"},
+            { id: "4", itemName: "Brownies", price: "$12", quantity: "1 dozen"},
+            { id: "5", itemName: "Fudge Brownies", price: "$12", quantity: "1 dozen"},
+            { id: "6", itemName: "Pizookie", price: "$12", quantity: "1"},
+            { id: "7", itemName: "Dulce de leche", price: "$12", quantity: "1 dozen"},
+            { id: "8", itemName: "Ube Cookies", price: "$12", quantity: "1 dozen"},
          ]
       }
    }

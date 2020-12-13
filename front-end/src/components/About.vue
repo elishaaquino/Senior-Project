@@ -55,7 +55,7 @@
                     <!-- Popular Items -->
                     <div class="popular-items">
                         <div class="image-wrapper">
-                            <a href="displayitem"><img class="img-fluid" src="../../public/images/popular-Item1.png" alt="brownies"></a>
+                            <a href="results"><img class="img-fluid" src="../../public/images/popular-Item1.png" alt="brownies"></a>
                         </div> <!-- end of image-wrapper -->
                     </div> <!-- end of popular-items -->
                     <!-- end of popular-items -->
