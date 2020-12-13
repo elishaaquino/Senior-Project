@@ -115,7 +115,7 @@ public class UserController {
             _user.addReview(review);
             _user = userRepository.save(_user);
 
-            return new ResponseEntity<>(_user, HttpStatus.OK);
+            return new ResponseEntity<>(_user, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>((User) null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
