@@ -22,17 +22,19 @@
                                 <Item 
                                     v-for="item in sellingItems" 
                                     :key="item.id"
-                                    :itemName="item.itemName"
-                                    :price="item.price"
-                                    :quantity="item.quantity"/>
+                                    :itemName="item.name"
+                                    :price=item.price
+                                    :quantity="item.quantity"
+                                    :photo="item.photos[0]"/>
                             </div>
                             <div v-if="btn_id === 1">
                                 <Item 
                                     v-for="item in buyingItems" 
                                     :key="item.id"
-                                    :itemName="item.itemName"
-                                    :price="item.price"
-                                    :quantity="item.quantity"/>
+                                    :itemName="item.name"
+                                    :price=item.price
+                                    :quantity="item.quantity"
+                                    :photo="item.photos[0]"/>
                             </div>
                         </div>
                     </div>
@@ -53,18 +55,8 @@ export default {
             return {
                 userUsername: "",
                 btn_id: 0,
-                sellingItems: [
-                    { id: 1, itemName: "Brownies", price: "$12", quantity: "1 dozen"}, 
-                    { id: 2, itemName: "Cookies", price: "$12", quantity: "1 dozen"},
-                    { id: 3, itemName: "Lemon Bar", price: "$12", quantity: "1 dozen"},
-                    { id: 4, itemName: "Brownies", price: "$12", quantity: "1 dozen"}
-                ],
-                buyingItems: [
-                    { id: 5, itemName: "Fudge Brownies", price: "$12", quantity: "1 dozen"},
-                    { id: 6, itemName: "Pizookie", price: "$12", quantity: "1"},
-                    { id: 7, itemName: "Dulce de leche", price: "$12", quantity: "1 dozen"},
-                    { id: 8, itemName: "Ube Cookies", price: "$12", quantity: "1 dozen"}
-                ]
+                sellingItems: [],
+                buyingItems: []
             }
         },
         methods: {
@@ -76,11 +68,16 @@ export default {
 
             getItems() {
 
-                // var userId = JSON.parse(localStorage.user)["id"];
-
-                ItemService.getItemUserAccount().then(
+                var userId = JSON.parse(localStorage.user)["id"];
+                
+                ItemService.getItemUserAccount(userId).then(
                     response => {
-                        console.log(response.data);
+
+                        for (let i = 0; i < response.data.length; i++) {
+                            this.sellingItems.push(
+                             response.data[i]
+                             );
+                        }
                     }
                 );
             }

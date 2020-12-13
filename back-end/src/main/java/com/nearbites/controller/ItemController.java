@@ -18,7 +18,7 @@ public class ItemController {
     @Autowired
     ItemRepository itemRepository;
 
-    @GetMapping("/allItemsUserAccount")
+    @GetMapping("/items/items")
     public ResponseEntity<List<Item>> getAllItems() {
         List<Item> items = new ArrayList<>();
 
@@ -36,5 +36,14 @@ public class ItemController {
             System.out.println(e.getMessage());
             return new ResponseEntity<>((Item) null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/allItemsUserAccount")
+    public ResponseEntity<List<Item>> getAllItemsUserAccount(@RequestParam String ownerId) {
+        List<Item> items = new ArrayList<>();
+
+        items = itemRepository.findByOwnerId(ownerId);
+
+        return new ResponseEntity<>(items, HttpStatus.OK);
     }
 }
