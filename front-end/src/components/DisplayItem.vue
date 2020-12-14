@@ -79,7 +79,7 @@ export default {
     },
     data: () => {
         return {
-            id: "5fd6721cccc4cb3796fc7227", //item id
+            id: "5fd4451b3b21cb62010ccc69", //item id
             seller_firstName: "Monica",
             seller_lastName: "Andres",
             itemName: 'Oreo Brownies',

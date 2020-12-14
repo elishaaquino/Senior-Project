@@ -10,6 +10,13 @@ class ItemService {
     return http.get(`/items/allItemsUserAccount?ownerId=` + ownerId);
   }
 
+  search(keyword) {
+     return http.get('/items/search/' + keyword);
+  }
+
+  getAllItems() {
+     return http.get('/items');
+  }
 }
 
 export default new ItemService();

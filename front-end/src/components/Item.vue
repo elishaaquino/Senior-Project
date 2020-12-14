@@ -1,8 +1,8 @@
 <template>
    <div class="item">
       <router-link :to="{ name: 'displayitem', params: { id: id } }">
-      <div class="item-pic">
-         <img :src="photo"/>
+      <div class="item-pic d-flex flex-column justify-space-between align-center">
+         <img contain :src="photo" class="item-pic"/>
       </div>
       <div class="item-name">
          {{ itemName }}
@@ -19,6 +19,10 @@ export default {
   name: "Item",
   props: {
      id: {
+      type: String,
+      required: true
+    },
+    ownerId : {
       type: String,
       required: true
     },
@@ -67,5 +71,9 @@ export default {
 	margin-bottom: 2.5rem;
 	margin-left: 1.5rem;
    flex: 1 0 21%;
+   .item-pic {
+   max-width: 200px;
+   max-height: 250px;
+   }
 }
 </style>

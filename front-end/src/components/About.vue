@@ -9,9 +9,10 @@
                         <div class="text-container">
                             <h1>FEELING HUNGRY FOR</h1>
                             <h1>HOME COOKED FOOD?</h1>
-                            <b-form action="">
-                              <input  class="search" type="text" placeholder="Search.." name="search"/>
-                              <b-button  class="search-button" size="sm" href="results"><b-icon icon="search"></b-icon></b-button>
+                            <b-form @submit.prevent="searchResults()">
+                              <input class="search" type="text" placeholder="Search.." name="search" 
+                                 v-model="search"/>
+                              <b-button  class="search-button" size="sm" @click="searchResults()"><b-icon icon="search"></b-icon></b-button>
                             </b-form>
                             <p class="p-heading p-large"><strong>Suggested: </strong>pasta, brownies, kimchi</p>
                         </div>
@@ -94,7 +95,19 @@
 
 <script>
 export default {
-  name: 'About'
+  name: 'About',
+  data() {
+     return {
+        search: ''
+     }
+  },
+  methods: {
+     searchResults() {
+        if (this.search === '')
+            this.search = 'f438fh89w2rji2gjr03gj8430gh30hg430';
+        this.$router.replace({ name: "results", params: {keyword:this.search}});
+     }
+  }
 }
 </script>
 

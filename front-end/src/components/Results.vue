@@ -6,9 +6,11 @@
                v-for="item in items" 
                :key="item.id"
                :id="item.id"
+               :ownerId="item.ownerId"
                :itemName="item.itemName"
                :price="item.price"
-               :quantity="item.quantity"/>
+               :quantity="item.quantity"
+               :photo="item.photo"/>
          </div>
       </div>
    </div>
@@ -16,23 +18,56 @@
 
 <script>
 import Item from "./Item";
+import ItemService from '../service/ItemService';
 
 export default {
    name: "Results",
    components: {Item},
    data () {
       return {
-         items: [
-            { id: "1", itemName: "Brownies", price: "$12", quantity: "1 dozen"}, 
-            { id: "2", itemName: "Cookies", price: "$12", quantity: "1 dozen"},
-            { id: "3", itemName: "Lemon Bar", price: "$12", quantity: "1 dozen"},
-            { id: "4", itemName: "Brownies", price: "$12", quantity: "1 dozen"},
-            { id: "5", itemName: "Fudge Brownies", price: "$12", quantity: "1 dozen"},
-            { id: "6", itemName: "Pizookie", price: "$12", quantity: "1"},
-            { id: "7", itemName: "Dulce de leche", price: "$12", quantity: "1 dozen"},
-            { id: "8", itemName: "Ube Cookies", price: "$12", quantity: "1 dozen"},
-         ]
+         items: []
       }
+   },
+   methods: {
+      getItems() {
+         let keyword = this.$route.params.keyword;
+         if (keyword === 'f438fh89w2rji2gjr03gj8430gh30hg430')
+            ItemService.getAllItems().then(resp => {
+               console.log(resp.data)
+               resp.data.forEach(element => {
+                  let item = {
+                     id: element.id,
+                     ownerId: element.ownerId,
+                     itemName: element.name,
+                     price: element.price,
+                     quantity: element.quantity,
+                     photo: element.photos[0]
+                  }
+
+                  this.items.push(item);
+               });
+            });
+         else {
+            ItemService.search(keyword).then(resp => {
+               console.log(resp.data)
+               resp.data.forEach(element => {
+                  let item = {
+                     id: element.id,
+                     ownerId: element.ownerId,
+                     itemName: element.name,
+                     price: element.price,
+                     quantity: element.quantity,
+                     photo: element.photos[0]
+                  }
+
+                  this.items.push(item);
+               });
+            })
+         }
+      }
+   },
+   created() {
+      this.getItems();
    }
 }
 </script>

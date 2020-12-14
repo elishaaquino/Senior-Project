@@ -10,8 +10,10 @@
 
          <b-navbar-nav class="ml-auto">
             <b-nav-form v-if="this.$route.name !== 'about'">
-               <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
-               <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+               <b-form-input size="sm" class="mr-sm-2" placeholder="Search" v-model="search"
+                  @submit.prevent="searchResults()"></b-form-input>
+               <b-button size="sm" class="my-2 my-sm-0" type="submit"
+                  @click="searchResults()">Search</b-button>
             </b-nav-form>
 
             <b-nav-item-dropdown right v-if="isLoggedIn">
@@ -35,6 +37,11 @@
 <script>
 export default {
    name: "app",
+   data () {
+      return {
+         search: ''
+      }
+   },
    computed: {
       isLoggedIn() {return this.$store.state.auth.status.loggedIn;}
    },
@@ -42,6 +49,11 @@ export default {
       logOut() {
          this.$store.dispatch('auth/logout');
          this.$router.push('/signin');
+      },
+      searchResults() {
+         if (this.search === '')
+            this.search = 'f438fh89w2rji2gjr03gj8430gh30hg430';
+         this.$router.replace({ name: "results", params: {keyword:this.search}});
       }
    }
 }
