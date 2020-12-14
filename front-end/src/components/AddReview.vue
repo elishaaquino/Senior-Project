@@ -77,7 +77,7 @@ export default {
             }
         },
         addReviewToItem(id, review) {
-          return http.put("/itemReviews/"+id, review);
+          return http.put("/items/itemReviews/"+id, review);
         },
         addReviewToUser(id, review) {
           return http.put('/users/addReview/'+id, review);
