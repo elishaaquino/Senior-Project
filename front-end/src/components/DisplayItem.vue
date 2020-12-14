@@ -71,7 +71,6 @@
 
 <script>
 import Review from "./Review";
-// import UserDataService from "../service/UserDataService";
 
 export default {
     name: "Display-Item",
