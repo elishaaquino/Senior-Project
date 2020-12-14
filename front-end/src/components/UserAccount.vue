@@ -26,7 +26,8 @@
                                     :itemName="item.name"
                                     :price=item.price
                                     :quantity="item.quantity"
-                                    :photo="item.photos[0]"/>
+                                    :photo="item.photos[0]"
+                                    :sellerId="item.ownerId"/>
                             </div>
                             <div v-if="btn_id === 1">
                                 <Item 
@@ -36,7 +37,8 @@
                                     :itemName="item.name"
                                     :price=item.price
                                     :quantity="item.quantity"
-                                    :photo="item.photos[0]"/>
+                                    :photo="item.photos[0]"
+                                    :sellerId="item.ownerId"/>
                             </div>
                         </div>
                     </div>

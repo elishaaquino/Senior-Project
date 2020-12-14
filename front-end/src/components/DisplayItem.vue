@@ -18,7 +18,7 @@
                 <p>{{price}}</p>
                 <p>{{amount}}</p>
                 <div @click="toaddstorepage(seller_firstName, seller_lastName)">
-                    <router-link :to="{ name: 'storepage', params: { storename: seller_firstName+seller_lastName } }">
+                    <router-link :to="{ name: 'storepage', params: { storename: seller_firstName+seller_lastName, sellerId: sellerId } }">
                         <div class="row mt-5 align-items-center">
                             <div class="usr-img col-3 pr-0">
                                 <img src="../../public/images/profilePicture.jpg">
@@ -71,6 +71,7 @@
 
 <script>
 import Review from "./Review";
+// import UserDataService from "../service/UserDataService";
 
 export default {
     name: "Display-Item",
@@ -82,6 +83,7 @@ export default {
             id: "5fd6721cccc4cb3796fc7227", //item id
             seller_firstName: "Monica",
             seller_lastName: "Andres",
+            sellerId: "",
             itemName: 'Oreo Brownies',
             price: '$12',
             amount: '12 pieces',
@@ -110,6 +112,11 @@ export default {
         toaddstorepage(seller_firstName, seller_lastName) {
             localStorage.setItem('storename', seller_firstName + " " + seller_lastName);
         }
+    },
+    created() {
+        this.sellerId= this.$route.params.sellerId;
+        console.log(this.sellerId);
+        
     }
 };
 </script>
