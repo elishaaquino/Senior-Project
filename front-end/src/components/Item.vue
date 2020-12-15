@@ -22,10 +22,6 @@ export default {
       type: String,
       required: true
     },
-    ownerId : {
-      type: String,
-      required: true
-    },
     itemName: {
       type: String,
       required: true

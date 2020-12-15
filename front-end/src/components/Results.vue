@@ -6,7 +6,7 @@
                v-for="item in items" 
                :key="item.id"
                :id="item.id"
-               :ownerId="item.ownerId"
+               :sellerId="item.sellerId"
                :itemName="item.itemName"
                :price="item.price"
                :quantity="item.quantity"
@@ -37,7 +37,7 @@ export default {
                resp.data.forEach(element => {
                   let item = {
                      id: element.id,
-                     ownerId: element.ownerId,
+                     sellerId: element.ownerId,
                      itemName: element.name,
                      price: element.price,
                      quantity: element.quantity,
@@ -53,7 +53,7 @@ export default {
                resp.data.forEach(element => {
                   let item = {
                      id: element.id,
-                     ownerId: element.ownerId,
+                     sellerId: element.ownerId,
                      itemName: element.name,
                      price: element.price,
                      quantity: element.quantity,
