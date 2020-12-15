@@ -1,15 +1,15 @@
 <template>
    <div class="item">
       <router-link :to="{ name: 'displayitem', params: { id: id} }">
-      <div class="item-pic d-flex flex-column justify-space-between align-center">
-         <img contain :src="photo" class="item-pic"/>
-      </div>
-      <div class="item-name">
-         {{ itemName }}
-      </div>
-      <div class="item-info">
-         ${{ price }} for {{ quantity }}
-      </div>
+         <div class="item-pic d-flex flex-column justify-space-between align-center">
+            <img contain :src="photo" class="item-pic"/>
+         </div>
+         <div class="item-name">
+            {{ itemName }}
+         </div>
+         <div class="item-info">
+            ${{ price }} for {{ quantity }}
+         </div>
       </router-link>
    </div>
 </template>
