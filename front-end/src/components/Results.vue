@@ -33,7 +33,7 @@ export default {
          let keyword = this.$route.params.keyword;
          if (keyword === 'f438fh89w2rji2gjr03gj8430gh30hg430')
             ItemService.getAllItems().then(resp => {
-               console.log(resp.data)
+
                resp.data.forEach(element => {
                   let item = {
                      id: element.id,
@@ -49,7 +49,7 @@ export default {
             });
          else {
             ItemService.search(keyword).then(resp => {
-               console.log(resp.data)
+
                resp.data.forEach(element => {
                   let item = {
                      id: element.id,

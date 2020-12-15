@@ -129,7 +129,7 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getUser(@PathVariable String id) {
         try {
-            User _user = userRepository.findByUsername(id)
+            User _user = userRepository.findById(id)
                     .orElseThrow(() -> new Exception("User not found for item with id: " + id));
 
             return new ResponseEntity<>(_user, HttpStatus.OK);

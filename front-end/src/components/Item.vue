@@ -1,6 +1,6 @@
 <template>
    <div class="item">
-      <router-link :to="{ name: 'displayitem', params: { id: id, sellerId: sellerId } }">
+      <router-link :to="{ name: 'displayitem', params: { id: id} }">
       <div class="item-pic d-flex flex-column justify-space-between align-center">
          <img contain :src="photo" class="item-pic"/>
       </div>
