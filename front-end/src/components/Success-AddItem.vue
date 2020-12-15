@@ -14,15 +14,24 @@
             </div>
 
             <div class="row justify-content-md-center">
-                <button class="back-button">Back to account page.</button>
+                <router-link class="back-button" :to="{ name: 'userAccount', params: { userUsername: username } }">Back to account page.</router-link>
             </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Add-Item-Success"
-}
+    name: 'Add-Item_success',
+    components: {},
+        data () {
+            return {
+                username: ''
+            }
+        },
+        created() {
+            this.username = JSON.parse(localStorage.user)["username"];
+        },
+    };
 </script>
 
 <style scoped>

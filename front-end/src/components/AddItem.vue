@@ -88,35 +88,33 @@ export default {
                     const formData = new FormData();
                     formData.append("file", this.files[i]);
                     
-                    (async () => {
-                        await http.post("storage/uploadImage",formData).then(
-                            resp => {
-                                photoURLS.push(resp.data);
-                            }
-                        );
-                    })();
+                    http.post("storage/uploadImage",formData).then(
+                        resp => {
+                            console.log("Finished call");
+                            
+                            photoURLS.push(resp.data);
+                        }
+                    ).then (resp => {
+                        console.log(resp);
+                        
+                        var userId = JSON.parse(localStorage.user)["id"];
+
+                        var item = {
+                            ownerId: userId, 
+                            name: this.itemName, 
+                            price: this.price, 
+                            quantity: this.quant,
+                            extraInfo: {
+                                allergens: this.allergens, 
+                                dietaryRestric: this.diet
+                            },
+                            photos: photoURLS, 
+                            reviews: [null]
+                        }
+                        
+                        ItemService.additem(item).then(this.$router.push('/additemsuccess'));
+                    })
                 }
-
-                setTimeout(() => { 
-
-                    var userId = JSON.parse(localStorage.user)["id"];
-
-                    var item = {
-                        ownerId: userId, 
-                        name: this.itemName, 
-                        price: this.price, 
-                        quantity: this.quant,
-                        extraInfo: {
-                            allergens: this.allergens, 
-                            dietaryRestric: this.diet
-                        },
-                        photos: photoURLS, 
-                        reviews: [null]
-                    }
-                    
-                    ItemService.additem(item).then(this.$router.push('/additemsuccess'));
-
-                }, 1000);
             }
             else {
                 this.errors = [];
