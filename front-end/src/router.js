@@ -17,7 +17,7 @@ export const router = new Router({
          component: () => import("./components/UserList")
       },
       {
-         path: "/results",
+         path: "/results/:keyword",
          name: "results",
          component: () => import("./components/Results")
       },

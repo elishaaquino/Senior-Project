@@ -71,35 +71,27 @@
 
 <script>
 import Review from "./Review";
+import ItemService from '../service/ItemService';
+import UserDataService from '../service/UserDataService';
 
 export default {
     name: "Display-Item",
     components: {
-    Review
+      Review
     },
     data: () => {
         return {
-            id: "5fd6721cccc4cb3796fc7227", //item id
-            seller_firstName: "Monica",
-            seller_lastName: "Andres",
-            sellerId: "",
-            itemName: 'Oreo Brownies',
-            price: '$12',
-            amount: '12 pieces',
-            allergens: "Peanuts, milk, eggs",
-            diet: "Gluten-free",
-            images: [
-                "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-3.jpg",
-                "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-7.jpg",
-                "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-10.jpg",
-                "https://i2.wp.com/www.sugarspunrun.com/wp-content/uploads/2018/04/Easy-Oreo-Brownie-Recipe-1-of-1-5.jpg",
-                "https://confessionsofabakingqueen.com/wp-content/uploads/2020/07/oreo-brownies-on-a-black-wire-rack-on-a-grey-surfac-1-of-1.jpg"
-            ],
-            reviews: [
-                { id: 1, username: "Maggie Chang", date: "11/11/20", content: "Yummy!", img: "profilePicture.jpg" },
-                { id: 2, username: "Monica Andres", date: "11/12/20", content: "I'm allergic :(", img: "profilePicture.jpg" },
-                { id: 3, username: "Elisha Aquino", date: "11/14/20", content: "Delicious!", img: "profilePicture.jpg" }
-            ]
+            id: '', //item id
+            seller_firstName: '',
+            seller_lastName: '',
+            sellerId: '',
+            itemName: '',
+            price: '',
+            amount: '',
+            allergens: '',
+            diet: '',
+            images: [],
+            reviews: []
         };
     },
     methods: {
@@ -110,12 +102,33 @@ export default {
         },
         toaddstorepage(seller_firstName, seller_lastName) {
             localStorage.setItem('storename', seller_firstName + " " + seller_lastName);
+        },
+        getItemInfo() {
+           ItemService.getItem(this.$route.params.id).then(resp => {
+              let res = resp.data;
+              this.id = res.id;
+              this.sellerId = res.ownerId;
+              this.itemName = res.name;
+              this.price = res.price;
+              this.amount = res.quantity;
+              this.allergens = res.extraInfo.allergens;
+              this.diet = res.extraInfo.dietaryRestric;
+              this.images = res.photos;
+              this.reviews = res.reviews;
+
+              return res.ownerId;
+           }).then(resp => {
+              console.log(resp)
+              UserDataService.getUser(resp).then(resp => {
+                 let res = resp.data;
+                 this.seller_firstName = res.firstName;
+                 this.seller_lastName = res.lastName;
+              })
+           });
         }
     },
     created() {
-        this.sellerId= this.$route.params.sellerId;
-        console.log(this.sellerId);
-        
+        this.getItemInfo();
     }
 };
 </script>

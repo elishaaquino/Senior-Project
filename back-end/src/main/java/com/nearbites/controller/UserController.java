@@ -125,4 +125,16 @@ public class UserController {
             return new ResponseEntity<>((User) null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUser(@PathVariable String id) {
+        try {
+            User _user = userRepository.findById(id)
+                    .orElseThrow(() -> new Exception("User not found for item with id: " + id));
+
+            return new ResponseEntity<>(_user, HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

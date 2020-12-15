@@ -1,15 +1,15 @@
 <template>
    <div class="item">
-      <router-link :to="{ name: 'displayitem', params: { id: id, sellerId: sellerId } }">
-         <div class="item-pic">
-            <img :src="photo"/>
-         </div>
-         <div class="item-name">
-            {{ itemName }}
-         </div>
-         <div class="item-info">
-            ${{ price }} for {{ quantity }}
-         </div>
+      <router-link :to="{ name: 'displayitem', params: { id: id} }">
+      <div class="item-pic d-flex flex-column justify-space-between align-center">
+         <img contain :src="photo" class="item-pic"/>
+      </div>
+      <div class="item-name">
+         {{ itemName }}
+      </div>
+      <div class="item-info">
+         ${{ price }} for {{ quantity }}
+      </div>
       </router-link>
    </div>
 </template>
@@ -71,5 +71,9 @@ export default {
 	margin-bottom: 2.5rem;
 	margin-left: 1.5rem;
    flex: 1 0 21%;
+   .item-pic {
+   max-width: 200px;
+   max-height: 250px;
+   }
 }
 </style>

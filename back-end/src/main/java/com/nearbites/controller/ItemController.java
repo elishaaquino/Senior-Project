@@ -21,7 +21,7 @@ public class ItemController {
     @Autowired
     ItemRepository itemRepository;
 
-    @GetMapping("/items/items")
+    @GetMapping("")
     public ResponseEntity<List<Item>> getAllItems() {
         List<Item> items = new ArrayList<>();
 
@@ -75,6 +75,33 @@ public class ItemController {
             return new ResponseEntity<>(_item, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>((Item) null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getInfoForItem(@PathVariable String id) {
+        try {
+            Item _item = itemRepository.findById(id)
+                    .orElseThrow(() -> new Exception("Item not found with id: " + id));
+            return new ResponseEntity<>(_item, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/search/{keyword}")
+    public ResponseEntity<?> findItemByKeyword(@PathVariable String keyword) {
+        try {
+            List<Item> items = new ArrayList<>();
+            
+            itemRepository.findAll().forEach(item -> {
+                if (item.getName().toLowerCase().contains(keyword.toLowerCase()))
+                    items.add(item);
+            });
+
+            return new ResponseEntity<>(items, HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }

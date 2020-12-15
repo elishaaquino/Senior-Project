@@ -10,8 +10,20 @@ class ItemService {
     return http.get(`/items/allItemsUserAccount?ownerId=` + ownerId);
   }
 
+  search(keyword) {
+     return http.get('/items/search/' + keyword);
+  }
+
+  getAllItems() {
+     return http.get('/items');
+  }
+  
   getItemStorePage(sellerId) {
-    return http.get(`/items/allItemsStorePage/` + sellerId)
+    return http.get(`/items/allItemsStorePage/` + sellerId);
+  }
+
+  getItem(id) {
+     return http.get('/items/' + id);
   }
 }
 
