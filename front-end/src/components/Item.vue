@@ -1,15 +1,15 @@
 <template>
    <div class="item">
-      <router-link :to="{ name: 'displayitem', params: { id: id } }">
-      <div class="item-pic">
-         <img :src="photo"/>
-      </div>
-      <div class="item-name">
-         {{ itemName }}
-      </div>
-      <div class="item-info">
-         ${{ price }} for {{ quantity }}
-      </div>
+      <router-link :to="{ name: 'displayitem', params: { id: id, sellerId: sellerId } }">
+         <div class="item-pic">
+            <img :src="photo"/>
+         </div>
+         <div class="item-name">
+            {{ itemName }}
+         </div>
+         <div class="item-info">
+            ${{ price }} for {{ quantity }}
+         </div>
       </router-link>
    </div>
 </template>
@@ -35,6 +35,10 @@ export default {
       required: true
     },
     photo: {
+       type: String,
+       required: true
+    },
+    sellerId: {
        type: String,
        required: true
     }

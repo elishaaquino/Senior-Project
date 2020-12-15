@@ -10,6 +10,9 @@ class ItemService {
     return http.get(`/items/allItemsUserAccount?ownerId=` + ownerId);
   }
 
+  getItemStorePage(sellerId) {
+    return http.get(`/items/allItemsStorePage/` + sellerId)
+  }
 }
 
 export default new ItemService();
