@@ -29,11 +29,14 @@
                     <div class="col-lg-12">
                         <div v-if="btn_id === 0">
                             <Item 
-                                v-for="item in sellingItems" 
-                                :key="item.id"
-                                :itemName="item.itemName"
-                                :price="item.price"
-                                :quantity="item.quantity"/>
+                                    v-for="item in sellingItems" 
+                                    :key="item.id"
+                                    :id="item.id"
+                                    :itemName="item.name"
+                                    :price=item.price
+                                    :quantity="item.quantity"
+                                    :photo="item.photos[0]"
+                                    :sellerId="item.ownerId"/>
                         </div>
                     </div>
                 </div>
@@ -61,6 +64,7 @@
 <script>
 import Item from "./Item";
 import Review from "./Review";
+import ItemService from '../service/ItemService';
 
 export default {
     name: 'storepage',
@@ -68,17 +72,10 @@ export default {
         data () {
             return {
                 seller: '',
+                sellerId: '',
                 storename: '',
                 btn_id: 0,
-                sellingItems: [
-                    { id: 1, itemName: "Brownies", price: "$12", quantity: "1 dozen"}, 
-                    { id: 2, itemName: "Cookies", price: "$12", quantity: "1 dozen"},
-                    { id: 3, itemName: "Lemon Bar", price: "$12", quantity: "1 dozen"},
-                    { id: 4, itemName: "Brownies", price: "$12", quantity: "1 dozen"},
-                    { id: 5, itemName: "Brownies", price: "$12", quantity: "1 dozen"},
-                    { id: 6, itemName: "Brownies", price: "$12", quantity: "1 dozen"},
-                    { id: 7, itemName: "Brownies", price: "$12", quantity: "1 dozen"}
-                ],
+                sellingItems: [],
                 reviews: [
                     { id: 1, username: "Maggie Chang", date: "11/11/20", content: "Reliable!", img: "profilePicture.jpg" },
                     { id: 2, username: "Monica Andres", date: "11/12/20", content: "Great vegan options", img: "profilePicture.jpg" },
@@ -89,10 +86,28 @@ export default {
         methods: {
             set_SelectedButton(value){
                 this.btn_id=value;
+            },
+            getItems() {
+                ItemService.getItemStorePage(this.sellerId).then(
+                    response => {
+                        console.log(response);
+                        
+                        for (let i = 0; i < response.data.length; i++) {
+                            this.sellingItems.push(
+                                response.data[i]
+                            );
+                        }
+                    }
+                );
             }
         },
         created() {
             this.seller = localStorage.storename;
+            this.sellerId= this.$route.params.sellerId;
+
+            console.log(this.sellerId);
+
+            this.getItems();
         },
     };
 </script>

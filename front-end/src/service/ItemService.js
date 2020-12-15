@@ -17,6 +17,10 @@ class ItemService {
   getAllItems() {
      return http.get('/items');
   }
+  
+  getItemStorePage(sellerId) {
+    return http.get(`/items/allItemsStorePage/` + sellerId);
+  }
 }
 
 export default new ItemService();

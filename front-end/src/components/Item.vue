@@ -1,6 +1,6 @@
 <template>
    <div class="item">
-      <router-link :to="{ name: 'displayitem', params: { id: id } }">
+      <router-link :to="{ name: 'displayitem', params: { id: id, sellerId: sellerId } }">
       <div class="item-pic d-flex flex-column justify-space-between align-center">
          <img contain :src="photo" class="item-pic"/>
       </div>
@@ -39,6 +39,10 @@ export default {
       required: true
     },
     photo: {
+       type: String,
+       required: true
+    },
+    sellerId: {
        type: String,
        required: true
     }

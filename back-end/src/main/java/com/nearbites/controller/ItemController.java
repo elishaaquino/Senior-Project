@@ -43,9 +43,18 @@ public class ItemController {
 
     @GetMapping("/allItemsUserAccount")
     public ResponseEntity<List<Item>> getAllItemsUserAccount(@RequestParam String ownerId) {
-        List<Item> items = new ArrayList<>();
+        List<Item> items;
 
         items = itemRepository.findByOwnerId(ownerId);
+
+        return new ResponseEntity<>(items, HttpStatus.OK);
+    }
+
+    @GetMapping("/allItemsStorePage/{id}")
+    public ResponseEntity<List<Item>> getAllItemsStorePage(@PathVariable String id) {
+        List<Item> items;
+
+        items = itemRepository.findByOwnerId(id);
 
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
