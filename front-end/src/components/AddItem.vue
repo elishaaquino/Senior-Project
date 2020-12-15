@@ -79,7 +79,7 @@ export default {
         createNewItem: function(e) {
 
             // checks if all required input fields are filled in
-            if (this.files.length != 0) {
+            if (this.itemName && this.price && this.quant && this.desc && this.files.length != 0) {
                 
                 const formData = new FormData();
 
