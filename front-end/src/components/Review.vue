@@ -3,7 +3,7 @@
 
         <div class="col-1">
             <div class="usr-img">
-                <img :src="require('@/assets/' + imgUrl + '')">
+                <img :src="imgUrl">
             </div>
         </div>
 
