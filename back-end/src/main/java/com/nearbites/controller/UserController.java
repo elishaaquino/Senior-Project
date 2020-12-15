@@ -86,6 +86,7 @@ public class UserController {
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
+                userDetails.getUserImage(),
                 roles));
     }
 
@@ -116,8 +117,8 @@ public class UserController {
             User _user = userRepository.findById(_item.getOwnerId())
                     .orElseThrow(() -> new Exception("User not found for item with id: " + id));
 
-            _user.addReview(new Review(review.getUsername(),
-                    review.getReview(), formatter.format(date)));
+            _user.addReview(new Review(Integer.toString(_user.getReviews().size() + 1), review.getUsername(),
+                    review.getReview(), formatter.format(date), review.getUserImage()));
             _user = userRepository.save(_user);
 
             return new ResponseEntity<>(_user, HttpStatus.CREATED);

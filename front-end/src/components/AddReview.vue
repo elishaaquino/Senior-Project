@@ -57,7 +57,9 @@ export default {
 
            // checks if all required input fields are filled in
            if (this.review) {
-                let review = {"username": JSON.parse(localStorage.user)["username"], "review": this.review};
+                let review = {"username": JSON.parse(localStorage.user)["username"], 
+                              "review": this.review,
+                              "userImage": JSON.parse(localStorage.user)["userImage"]};
                 let id = this.id;
 
                 Promise.all([
