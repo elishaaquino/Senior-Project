@@ -68,8 +68,8 @@ public class ItemController {
             Item _item = itemRepository.findById(id)
             .orElseThrow(() -> new Exception("Item not found with id: " + id));
 
-            _item.addReview(new Review(review.getUsername(),
-                    review.getReview(), formatter.format(date)));
+            _item.addReview(new Review(Integer.toString(_item.getReviews().size() + 1), review.getUsername(),
+                    review.getReview(), formatter.format(date), review.getUserImage()));
             _item = itemRepository.save(_item);
 
             return new ResponseEntity<>(_item, HttpStatus.CREATED);

@@ -15,7 +15,7 @@
             <!-- required item information -->
             <div class="item-details col-3 pl-0">
                 <strong>{{itemName}}</strong>
-                <p>{{price}}</p>
+                <p>${{price}}</p>
                 <p>{{amount}}</p>
                 <div @click="toaddstorepage(seller_firstName, seller_lastName)">
                     <router-link :to="{ name: 'storepage', params: { storename: seller_firstName+seller_lastName, sellerId: sellerId } }">
@@ -61,8 +61,8 @@
                 :key="r.id"
                 :userName="r.username"
                 :date="r.date"
-                :content="r.content"
-                :imgUrl="r.img"
+                :content="r.review"
+                :imgUrl="r.userImage"
             />
         </div>
 
@@ -115,7 +115,7 @@ export default {
               this.diet = res.extraInfo.dietaryRestric;
               this.images = res.photos;
               this.reviews = res.reviews;
-
+              
               return res.ownerId;
            }).then(resp => {
               console.log(resp)

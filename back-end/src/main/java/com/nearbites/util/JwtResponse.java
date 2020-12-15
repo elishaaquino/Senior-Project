@@ -7,12 +7,14 @@ public class JwtResponse {
     private String jwt;
     private String id;
     private String username;
+    private String userImage;
     private List<String> roles;
 
-    public JwtResponse(String jwt, String id, String username, List<String> roles) {
+    public JwtResponse(String jwt, String id, String username, String userImage, List<String> roles) {
         this.jwt = jwt;
         this.id = id;
         this.username = username;
+        this.userImage = userImage;
         this.roles = roles;
     }
 
@@ -38,6 +40,14 @@ public class JwtResponse {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
     }
 
     public List<String> getRoles() {
