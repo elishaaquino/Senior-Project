@@ -70,33 +70,31 @@ export default {
            quant: '',
            desc: '',
            allergens: '',
-           diet: ''
+           diet: '',
        }
    },
    methods: {
-       
+
         // upon submission
         createNewItem: function(e) {
 
             // checks if all required input fields are filled in
-            if (this.itemName && this.price && this.quant && this.desc && this.files.length != 0) {
-               
-                var photoURLS = []
+            if (this.files.length != 0) {
+                
+                const formData = new FormData();
 
-                // uploads images to S3
                 for (let i = 0; i < this.files.length; i++) {
-                    const formData = new FormData();
-                    formData.append("file", this.files[i]);
-                    
-                    http.post("storage/uploadImage",formData).then(
-                        resp => {
-                            console.log("Finished call");
-                            
-                            photoURLS.push(resp.data);
+                    formData.append("photos", this.files[i]);
+                }
+                
+                http.post("storage/uploadImages",formData).then(
+                    resp => {
+                        var photoURLS= [];
+
+                        for (let i = 0; i < resp.data.length; i++) {
+                            photoURLS.push(resp.data[i])
                         }
-                    ).then (resp => {
-                        console.log(resp);
-                        
+
                         var userId = JSON.parse(localStorage.user)["id"];
 
                         var item = {
@@ -104,6 +102,7 @@ export default {
                             name: this.itemName, 
                             price: this.price, 
                             quantity: this.quant,
+                            desc: this.desc,
                             extraInfo: {
                                 allergens: this.allergens, 
                                 dietaryRestric: this.diet
@@ -111,10 +110,14 @@ export default {
                             photos: photoURLS, 
                             reviews: [null]
                         }
-                        
-                        ItemService.additem(item).then(this.$router.push('/additemsuccess'));
-                    })
-                }
+
+                        return item;
+                    }
+                ).then(
+                    resp => {
+                        ItemService.additem(resp).then(this.$router.push('/additemsuccess'))
+                    }
+                ); 
             }
             else {
                 this.errors = [];

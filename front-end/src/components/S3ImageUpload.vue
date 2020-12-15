@@ -23,7 +23,7 @@ export default {
          for (let i = 0; i < this.files.length; i++) {
             const formData = new FormData();
             formData.append("file", this.files[i]);
-            http.post("storage/uploadImage",formData).then(resp => console.log(resp.data));
+            http.post("storage/uploadImages",formData).then(resp => console.log(resp.data));
          }         
       }
    }
