@@ -117,7 +117,6 @@ export default {
               
               return res.ownerId;
            }).then(resp => {
-              console.log(resp)
               UserDataService.getUser(resp).then(resp => {
                  let res = resp.data;
                  this.seller_firstName = res.firstName;
