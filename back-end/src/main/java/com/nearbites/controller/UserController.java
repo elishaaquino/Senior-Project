@@ -54,11 +54,10 @@ public class UserController {
                     .badRequest()
                     .body("Error: Username is already taken!");
         }
-
+        
         // Create new user's account
         User newUser = new User(user.getUsername(), encoder.encode(user.getPassword()),
                 user.getFirstName(), user.getLastName(), user.getContact(), user.getImageUrl(), new ArrayList<>());
-
         Set<Role> roles = new HashSet<>();
         Role role = new Role(ERole.ROLE_USER);
         roles.add(role);
