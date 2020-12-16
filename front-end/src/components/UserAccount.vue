@@ -4,15 +4,21 @@
             <div class="profile-header">
                 <div class="container user-detail">
                     <div class="user-image">
-                        <img src="../../public/images/profilePicture.jpg">
-                        <a href="#selling" class="button1" @click="set_SelectedButton(0)">Selling</a>
-                        <a href="#buying" class="button1" @click="set_SelectedButton(1)">Buying</a>
-                        <br>
-                        <b-button class="button3" href="../additem">+ Add Item</b-button>
+                        <img :src="photo">
+                        <div v-if="btn_id === 0">
+                            <button class="selected" @click="set_SelectedButton(0)">Selling</button>
+                            <button class="unselected" @click="set_SelectedButton(1)">Buying</button>
+                        </div>
+                        <div v-if="btn_id === 1">
+                            <button class="unselected" @click="set_SelectedButton(0)">Selling</button>
+                            <button class="selected" @click="set_SelectedButton(1)">Buying</button>
+                        </div>
+                        <div class="addButton">
+                            <b-button class="addItem" href="../additem">+ Add Item</b-button>
+                        </div>
                     </div>
                     <div class="user-data">
-                        <h2>Welcome Back,</h2>
-                        <h2><strong>{{userUsername}}</strong></h2>
+                        <h2>Welcome Back, <strong>{{userUsername}}</strong></h2>
                     </div>
                 </div>
                 <div class="container">
@@ -87,7 +93,8 @@ export default {
             }
         },
         created() {
-
+            this.userUsername = JSON.parse(localStorage.user)["username"];
+            this.photo = JSON.parse(localStorage.user)["userImage"];
             var userId = JSON.parse(localStorage.user)["id"];
 
             this.getItems(userId);
@@ -106,27 +113,37 @@ export default {
         display: flex;
         flex-wrap: wrap;
     }
-    a.button1 {
+    button.selected {
         display: inline-block;
         padding: 0.35em 1.2em;
         margin: 0 0.3em 0.3em 0;
-        border-radius:0.12em;
-        box-sizing: border-box;
-        text-decoration:none;
+        border: none;
         font-weight:300;
-        color:#000000;
+        color:#ffffff;
+        background-color:#000000;
         text-align:center;
         transition: all 0.2s;
     }
-    a.button1:focus {
+    button.selected:focus {
         color:#ffffff;
         background-color:#000000;
     }
-    a.button1:hover {
+    button.selected:hover {
         color:#ffffff;
         background-color:#000000;
     }
-    .button3 {
+    button.unselected {
+        display: inline-block;
+        padding: 0.35em 1.2em;
+        margin: 0 0.3em 0.3em 0;
+        border: none;
+        font-weight:300;
+        color:#000000;
+        background-color:#ffffff;
+        text-align:center;
+        transition: all 0.2s;
+    }
+    .addItem {
         padding:0.3em 1.2em;
         margin:0 0.3em 0.3em 0;
         border-radius:2em;
@@ -151,19 +168,22 @@ export default {
     .user-image{
         float: left;
         position: relative;
-        width: 25%;
+        width: 30%;
     }
     .user-image img{
         width: 100%;
         height: 100%;
         border-radius: 50%;
         margin-top: 35px;
-        padding-bottom: 2rem;
+        padding-bottom: 1rem;
     }
     .user-data{
         float: left;
         width: 75%;
         padding-left: 27px;
-        margin-top: 8rem;
+        margin-top: 1rem;
+    }
+    .addButton {
+        padding-top: 0.5rem;
     }
 </style>
