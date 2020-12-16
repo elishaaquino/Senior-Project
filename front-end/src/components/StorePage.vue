@@ -5,39 +5,34 @@
 
                 <!-- user information -->
                 <div class="row mt-5">
-                    <div class="col-lg-2 user-image">
+                    <div class="col-lg-3 user-image">
                         <img src="../../public/images/profilePicture.jpg">
                         <br>
                     </div>
-                    <div class="col-lg-4 user-data">
+                    <div class="col-lg-5 user-data">
                         <h2><strong> {{ seller }} </strong></h2>
-                        <b-button class="button3 disabled" href="../additem">Contact Seller</b-button>
+                        <b-button class="button3 disabled" href="">Contact Seller</b-button>
                     </div>
-                    <div class="col-lg-6">
-                        <p> Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl eros, 
-                            pulvinar facilisis justo mollis, auctor consequat urna. Morbi a bibendum metus. 
-                            Donec scelerisque sollicitudin enim eu venenatis. Duis tincidunt laoreet ex, 
-                            in pretium orci vestibulum eget.
-                        </p>
-                        <p>San Diego, CA</p>
-                        <p>13 Items</p>
+                    <div class="col-lg-4">
+                        <strong>Contact Information</strong>
+                        <strong><p>Phone: {{ phone }}</p></strong>
+                        <strong><p>Email: {{ email }}</p></strong>
+                        <p>{{ numItems }} items</p>
                     </div>
                 </div>
 
                 <!-- display items -->
                 <div class="row mt-5">
                     <div class="col-lg-12">
-                        <div v-if="btn_id === 0">
-                            <Item 
-                                v-for="item in sellingItems" 
-                                :key="item.id"
-                                :id="item.id"
-                                :itemName="item.name"
-                                :price=item.price
-                                :quantity="item.quantity"
-                                :photo="item.photos[0]"
-                                :sellerId="item.ownerId"/>
-                        </div>
+                        <Item 
+                            v-for="item in sellingItems" 
+                            :key="item.id"
+                            :id="item.id"
+                            :itemName="item.name"
+                            :price=item.price
+                            :quantity="item.quantity"
+                            :photo="item.photos[0]"
+                            :sellerId="item.ownerId"/>
                     </div>
                 </div>
 
@@ -51,8 +46,8 @@
                         :key="r.id"
                         :userName="r.username"
                         :date="r.date"
-                        :content="r.content"
-                        :imgUrl="r.img"
+                        :content="r.review"
+                        :imgUrl="r.userImage"
                     />
                 </div>
 
@@ -65,6 +60,7 @@
 import Item from "./Item";
 import Review from "./Review";
 import ItemService from '../service/ItemService';
+import UserDataService from '../service/UserDataService';
 
 export default {
     name: 'storepage',
@@ -73,41 +69,47 @@ export default {
             return {
                 seller: '',
                 sellerId: '',
+                phone: '',
+                email: '',
                 storename: '',
-                btn_id: 0,
                 sellingItems: [],
-                reviews: [
-                    { id: 1, username: "Maggie Chang", date: "11/11/20", content: "Reliable!", img: "profilePicture.jpg" },
-                    { id: 2, username: "Monica Andres", date: "11/12/20", content: "Great vegan options", img: "profilePicture.jpg" },
-                    { id: 3, username: "Elisha Aquino", date: "11/14/20", content: "Responds quickly!", img: "profilePicture.jpg" }
-                ]
+                reviews: []
             }
         },
         methods: {
-            set_SelectedButton(value){
-                this.btn_id=value;
-            },
             getItems() {
                 ItemService.getItemStorePage(this.sellerId).then(
-                    response => {
-                        console.log(response);
-                        
-                        for (let i = 0; i < response.data.length; i++) {
+                    resp => {
+                        for (let i = 0; i < resp.data.length; i++) {
                             this.sellingItems.push(
-                                response.data[i]
+                                resp.data[i]
                             );
                         }
                     }
                 );
+            },
+            getUser() {
+                UserDataService.getUser(this.sellerId).then(
+                    resp => {
+                        this.phone = resp.data["contact"]["phoneNumber"];
+                        this.email = resp.data["contact"]["email"];
+                        
+                        this.reviews = resp.data["reviews"];
+                    }
+                )
+            }
+        },
+        computed: {
+            numItems() {
+                return this.sellingItems.length;
             }
         },
         created() {
             this.seller = localStorage.storename;
             this.sellerId= this.$route.params.sellerId;
 
-            console.log(this.sellerId);
-
             this.getItems();
+            this.getUser();
         },
     };
 </script>
