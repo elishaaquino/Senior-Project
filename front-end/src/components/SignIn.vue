@@ -7,7 +7,6 @@
         <p class="fieldName">Password</p>
         <input class="field" type="password" align="center" placeholder="Password" v-model="password">
 
-      <!-- the parameter after userAccount will be the userUsername parameter so that the user is taken to their user profile -->
       <b-button class="submit" @click="signIn()">Sign In</b-button>
       <div class="signup">
         <h6><strong>Don't have an account? </strong></h6> <a href="/signUp">Sign Up</a>

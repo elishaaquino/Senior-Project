@@ -20,7 +20,7 @@
                <template #button-content>
                   <em>User</em>
                </template>
-               <b-dropdown-item href="#">Profile</b-dropdown-item>
+               <b-dropdown-item @click=profile()>Profile</b-dropdown-item>
                <b-dropdown-item @click="logOut()">Sign Out</b-dropdown-item>
             </b-nav-item-dropdown>
             
@@ -46,6 +46,9 @@ export default {
       isLoggedIn() {return this.$store.state.auth.status.loggedIn;}
    },
    methods: {
+      profile() {
+         this.$router.push('/userAccount/' + JSON.parse(localStorage.user)["username"]);
+      },
       logOut() {
          this.$store.dispatch('auth/logout');
          this.$router.push('/signin');
