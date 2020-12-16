@@ -142,23 +142,24 @@ export default {
             },
             imageUrl: ''
          }
+         
          const formData = new FormData();
          formData.append("photos", this.file);
          http.post("storage/uploadImages",formData)
             .then(resp => userInfo.imageUrl = resp.data[0])
-            .then(() => {console.log(userInfo)
-         this.$store.dispatch('auth/register', userInfo).then(
-            () => {
-               this.$store.dispatch('auth/login', {username: this.username, password: this.password}).then(
+            .then(() => {
+               this.$store.dispatch('auth/register', userInfo).then(
                   () => {
-                     this.$router.push('/userAccount/'+this.username);
-                  },
-                  error => {
-                  this.message =
-                     (error.response && error.response.data) ||
-                     error.message ||
-                     error.toString();
-                  }
+                     this.$store.dispatch('auth/login', {username: this.username, password: this.password}).then(
+                        () => {
+                           this.$router.push('/userAccount/'+this.username);
+                           },
+                        error => {
+                     this.message =
+                        (error.response && error.response.data) ||
+                        error.message ||
+                        error.toString();
+                     }
                );
             },
             error => {
