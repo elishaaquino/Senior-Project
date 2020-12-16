@@ -70,53 +70,54 @@ export default {
            quant: '',
            desc: '',
            allergens: '',
-           diet: ''
+           diet: '',
        }
    },
    methods: {
-       
+
         // upon submission
         createNewItem: function(e) {
 
             // checks if all required input fields are filled in
             if (this.itemName && this.price && this.quant && this.desc && this.files.length != 0) {
-               
-                var photoURLS = []
+                
+                const formData = new FormData();
 
-                // uploads images to S3
                 for (let i = 0; i < this.files.length; i++) {
-                    const formData = new FormData();
-                    formData.append("file", this.files[i]);
-                    
-                    (async () => {
-                        await http.post("storage/uploadImage",formData).then(
-                            resp => {
-                                photoURLS.push(resp.data);
-                            }
-                        );
-                    })();
+                    formData.append("photos", this.files[i]);
                 }
+                
+                http.post("storage/uploadImages",formData).then(
+                    resp => {
+                        var photoURLS= [];
 
-                setTimeout(() => { 
+                        for (let i = 0; i < resp.data.length; i++) {
+                            photoURLS.push(resp.data[i])
+                        }
 
-                    var userId = JSON.parse(localStorage.user)["id"];
+                        var userId = JSON.parse(localStorage.user)["id"];
 
-                    var item = {
-                        ownerId: userId, 
-                        name: this.itemName, 
-                        price: this.price, 
-                        quantity: this.quant,
-                        extraInfo: {
-                            allergens: this.allergens, 
-                            dietaryRestric: this.diet
-                        },
-                        photos: photoURLS, 
-                        reviews: [null]
+                        var item = {
+                            ownerId: userId, 
+                            name: this.itemName, 
+                            price: this.price, 
+                            quantity: this.quant,
+                            desc: this.desc,
+                            extraInfo: {
+                                allergens: this.allergens, 
+                                dietaryRestric: this.diet
+                            },
+                            photos: photoURLS, 
+                            reviews: [null]
+                        }
+
+                        return item;
                     }
-                    
-                    ItemService.additem(item).then(this.$router.push('/additemsuccess'));
-
-                }, 1000);
+                ).then(
+                    resp => {
+                        ItemService.additem(resp).then(this.$router.push('/additemsuccess'))
+                    }
+                ); 
             }
             else {
                 this.errors = [];

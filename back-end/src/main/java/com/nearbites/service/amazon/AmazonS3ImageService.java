@@ -17,16 +17,22 @@ import java.util.List;
 @Service
 public class AmazonS3ImageService extends AmazonClient {
 
-    public String uploadImageToAmazon(MultipartFile multipartFile) {
+    public List<String> uploadImagesToAmazon(MultipartFile[] multipartFiles) {
+        List<String> URLS = new ArrayList<>();
+
         List<String> validExtensions = Arrays.asList("jpeg","jpg", "png");
 
-        String extension = FilenameUtils.getExtension(multipartFile.getOriginalFilename());
-        if (!validExtensions.contains(extension)) {
-            throw new InvalidImageFormatException(extension);
-        }
-        else {
-            return uploadMultipartFile(multipartFile);
-        }
+        for (MultipartFile file: multipartFiles)
+        {
+            String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+            if (!validExtensions.contains(extension)) {
+                throw new InvalidImageFormatException(extension);
+            } else {
+                URLS.add(uploadMultipartFile(file));
+            }
+        };
+
+        return URLS;
     }
 
     private String uploadMultipartFile(MultipartFile multipartFile) {

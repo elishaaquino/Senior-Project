@@ -32,7 +32,7 @@ public class ItemController {
     @PostMapping("/additem")
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
         try {
-            Item _item = itemRepository.save(new Item(item.getOwnerId(), item.getName(), item.getPrice(), item.getQuantity(), item.getExtraInfo(),
+            Item _item = itemRepository.save(new Item(item.getOwnerId(), item.getName(), item.getPrice(), item.getQuantity(), item.getDesc(), item.getExtraInfo(),
                     item.getPhotos(), new ArrayList<>()));
             return new ResponseEntity<>(_item, HttpStatus.CREATED);
         } catch (Exception e) {

@@ -15,6 +15,7 @@ public class Item {
     private String name;
     private Double price;
     private String quantity;
+    private String desc;
     private ExtraInfo extraInfo;
     private List<String> photos;
     private List<Review> reviews;
@@ -23,11 +24,12 @@ public class Item {
 
     }
 
-    public Item(String ownerId, String name, Double price, String quantity, ExtraInfo extraInfo, List<String> photos, List<Review> reviews) {
+    public Item(String ownerId, String name, Double price, String quantity, String desc, ExtraInfo extraInfo, List<String> photos, List<Review> reviews) {
         this.ownerId = ownerId;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.desc = desc;
         this.extraInfo = extraInfo;
         this.photos = photos;
         this.reviews = reviews;
@@ -72,6 +74,10 @@ public class Item {
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
+
+    public String getDesc() { return desc; }
+
+    public void setDesc(String desc) { this.desc = desc; }
 
     public ExtraInfo getExtraInfo() {
         return extraInfo;

@@ -73,7 +73,6 @@
 import Review from "./Review";
 import ItemService from '../service/ItemService';
 import UserDataService from '../service/UserDataService';
-
 export default {
     name: "Display-Item",
     components: {
@@ -137,18 +136,15 @@ export default {
 .gallery-container {
   width: 100%;
 }
-
 .gallery-row {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .usr-img img{
     width: 40px;
     border-radius: 50%;
 }
-
 .contact-button {
     padding:0.3em 1.2em;
     border: 2px solid #000000;
@@ -158,7 +154,6 @@ export default {
     width: 75%;
     cursor: pointer;
 }
-
 .add-review-button {
     padding:0.3em 1.2em;
     border: 2px solid #000000;

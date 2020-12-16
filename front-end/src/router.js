@@ -51,7 +51,7 @@ export const router = new Router({
          component: () => import("./components/AddReview")
       },
       {
-         path: "/store/:storename",
+         path: "/store/:sellerId/:storename",
          name: "storepage",
          component: () => import("./components/StorePage")
       },

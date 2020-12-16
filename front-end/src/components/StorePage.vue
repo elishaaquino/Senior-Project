@@ -29,21 +29,21 @@
                     <div class="col-lg-12">
                         <div v-if="btn_id === 0">
                             <Item 
-                                    v-for="item in sellingItems" 
-                                    :key="item.id"
-                                    :id="item.id"
-                                    :itemName="item.name"
-                                    :price=item.price
-                                    :quantity="item.quantity"
-                                    :photo="item.photos[0]"
-                                    :sellerId="item.ownerId"/>
+                                v-for="item in sellingItems" 
+                                :key="item.id"
+                                :id="item.id"
+                                :itemName="item.name"
+                                :price=item.price
+                                :quantity="item.quantity"
+                                :photo="item.photos[0]"
+                                :sellerId="item.ownerId"/>
                         </div>
                     </div>
                 </div>
 
                 <!-- reviews -->
                 <div class="row mb-4 mt-5">
-                    <div class="col-1"><strong>Reviews</strong></div>
+                    <div class="col"><strong>All Reviews</strong></div>
                 </div>
                 <div>
                     <Review 
