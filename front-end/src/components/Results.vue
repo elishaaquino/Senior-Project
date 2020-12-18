@@ -11,6 +11,7 @@
                :price="item.price"
                :quantity="item.quantity"
                :photo="item.photo"/>
+            <p v-if="items.length == 0"><strong>No results found :(</strong></p>
          </div>
       </div>
    </div>
