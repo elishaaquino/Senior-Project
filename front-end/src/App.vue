@@ -57,7 +57,7 @@ export default {
       searchResults() {
          if (this.search === '')
             this.search = 'f438fh89w2rji2gjr03gj8430gh30hg430';
-         this.$router.replace({ name: "results", params: {keyword:this.search}});
+         this.$router.push({ name: "results", params: {keyword:this.search}});
       }
    }
 }
