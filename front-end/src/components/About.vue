@@ -31,7 +31,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h3 class="card-title">WHO ARE WE?</h3>
-                            <p>Description of NearBites HERE! Shamalamadingdong for God so loved the world that He gave His only begotten son so that whoever believed in him shall have everlasting life.</p>
+                            <p>NearBites is a platform for community members to buy local homemade foods and sell their tasty creations. Whether you're looking for the perfect homemade gift or hoping to satisfy your cravings, NearBites builds a sense of community and trust amongst local homebakers and chefs.</p>
                         </div>
                     </div>
                     <!-- end of card -->
@@ -56,7 +56,7 @@
                     <!-- Popular Items -->
                     <div class="popular-items">
                         <div class="image-wrapper">
-                            <a href="results"><img class="img-fluid" src="../../public/images/popular-Item1.png" alt="brownies"></a>
+                            <a href="results/brownies"><img class="img-fluid" src="../../public/images/popular-Item1.png" alt="brownies"></a>
                         </div> <!-- end of image-wrapper -->
                     </div> <!-- end of popular-items -->
                     <!-- end of popular-items -->
@@ -64,7 +64,7 @@
                     <!-- popular-item -->
                     <div class="popular-items">
                         <div class="image-wrapper">
-                            <a href="displayitem"><img class="img-fluid" src="../../public/images/popular-Item2.png" href="#users" alt="noodles"></a>
+                            <a href="results/noodles"><img class="img-fluid" src="../../public/images/popular-Item2.png" alt="noodles"></a>
                         </div> <!-- end of image wrapper -->
                     </div> <!-- end of popular-items -->
                     <!-- end of popular-item -->
@@ -72,7 +72,7 @@
                     <!-- popular-item -->
                     <div class="popular-items">
                         <div class="image-wrapper">
-                            <a href="users"><img class="img-fluid" src="../../public/images/popular-Item3.png" href="#users" alt="bread"></a>
+                            <a href="results/bread"><img class="img-fluid" src="../../public/images/popular-Item3.png" alt="bread"></a>
                         </div> <!-- end of image wrapper -->
                     </div> <!-- end of popular-items -->
                     <!-- end of popular-items -->
@@ -80,7 +80,7 @@
                     <!-- popular-items -->
                     <div class="popular-items">
                         <div class="image-wrapper">
-                            <a href="users"><img class="img-fluid" src="../../public/images/popular-Item4.png" href="#users" alt="curry"></a>
+                            <a href="results/curry"><img class="img-fluid" src="../../public/images/popular-Item4.png" alt="curry"></a>
                         </div> <!-- end of image wrapper -->
                     </div> <!-- end of popular-items -->
                     <!-- end of popular-items -->
