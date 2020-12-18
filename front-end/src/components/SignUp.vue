@@ -152,7 +152,7 @@ export default {
                   () => {
                      this.$store.dispatch('auth/login', {username: this.username, password: this.password}).then(
                         () => {
-                           this.$router.push('/userAccount/'+this.username);
+                           this.$router.push('/onboarding');
                            },
                         error => {
                      this.message =
