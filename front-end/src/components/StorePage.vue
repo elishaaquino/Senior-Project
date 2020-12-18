@@ -6,11 +6,11 @@
                 <!-- user information -->
                 <div class="row mt-5">
                     <div class="col-lg-3 user-image">
-                        <img src="../../public/images/profilePicture.jpg">
+                        <img :src="seller_photo">
                         <br>
                     </div>
                     <div class="col-lg-5 user-data">
-                        <h2><strong> {{ seller }} </strong></h2>
+                        <h2><strong> {{ store_name }} </strong></h2>
                         <b-button class="button3 disabled" href="">Contact Seller</b-button>
                     </div>
                     <div class="col-lg-4">
@@ -102,10 +102,15 @@ export default {
         computed: {
             numItems() {
                 return this.sellingItems.length;
+            },
+            seller_photo() {
+                return this.$store.getters.seller_photo;
+            },
+            store_name() {
+                return this.$store.getters.seller;
             }
         },
         created() {
-            this.seller = localStorage.storename;
             this.sellerId= this.$route.params.sellerId;
 
             this.getItems();
@@ -173,5 +178,12 @@ export default {
         width: 80%;
         height: 80%;
         border-radius: 50%;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        margin-top: 35px;
+        padding-bottom: 1rem;
     }
 </style>

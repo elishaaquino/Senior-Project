@@ -17,11 +17,11 @@
                 <strong>{{itemName}}</strong>
                 <p>${{price}}</p>
                 <p>{{amount}}</p>
-                <div @click="toaddstorepage(seller_firstName, seller_lastName)">
-                    <router-link :to="{ name: 'storepage', params: { storename: seller_firstName+seller_lastName, sellerId: sellerId } }">
+                <div @click="toaddstorepage(seller_firstName, seller_lastName, seller_photo)">
+                    <router-link :to="{ name: 'storepage', params: { storename: seller_firstName+seller_lastName, sellerId: sellerId, seller_photo: seller_photo} }">
                         <div class="row mt-5 align-items-center">
                             <div class="usr-img col-3 pr-0">
-                                <img src="../../public/images/profilePicture.jpg">
+                                <img :src="seller_photo">
                             </div>
                             <div class="col pl-0">
                                 <strong>Made by {{ seller_firstName }}</strong>
@@ -83,6 +83,7 @@ export default {
             id: '', //item id
             seller_firstName: '',
             seller_lastName: '',
+            seller_photo: '',
             sellerId: '',
             itemName: '',
             price: '',
@@ -99,8 +100,9 @@ export default {
             localStorage.setItem('itemname', itemName);
             this.$router.push('/addreview/' + id);
         },
-        toaddstorepage(seller_firstName, seller_lastName) {
-            localStorage.setItem('storename', seller_firstName + " " + seller_lastName);
+        toaddstorepage(seller_firstName, seller_lastName, seller_photo) {
+            this.$store.commit("changeSellerPhoto", seller_photo);
+            this.$store.commit("changeSeller", seller_firstName + " " + seller_lastName);
         },
         getItemInfo() {
            ItemService.getItem(this.$route.params.id).then(resp => {
@@ -121,6 +123,7 @@ export default {
                  let res = resp.data;
                  this.seller_firstName = res.firstName;
                  this.seller_lastName = res.lastName;
+                 this.seller_photo = res.imageUrl;
               })
            });
         }
