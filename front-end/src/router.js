@@ -64,6 +64,11 @@ export const router = new Router({
          path: "/addreviewsuccess",
          name: "addreviewsuccess",
          component: () => import("./components/Success-AddReview")
+      },
+      {
+         path: "/onboarding",
+         name: "onboarding",
+         component: () => import("./components/Onboarding")
       }
    ]
 });
