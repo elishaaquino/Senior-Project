@@ -140,36 +140,23 @@ export default {
 
 .cards-2 {
 	padding-top: 2rem;	
-    // padding-bottom: 2rem;	
     background-color: #ECEDEA;
 }
 
-.cards-2 .section-title {
-	// text-align: center;
-}
-
 .cards-2 .card {
-	// margin-bottom: 1.25rem;
 	border: none;
-	// background-color: transparent;
 }
 
 .cards-2 .card-body {
 	padding: 2rem 2rem 2rem 2rem;
-	// border: 1px solid #ebe8e8;
-	// border-bottom-left-radius: 0.375rem;
-	// border-bottom-right-radius: 0.375rem;
 	background-color:#ECEDEA;
 }
 
 .cards-2 h3 {
-	// margin-bottom: 0.75rem;
-    // text-align: center;
     font-family: "Anton";
 }
 
 .cards-2 p {
-    // color: white;
     font-family: 'Barlow Condensed', sans-serif;
 }
 
@@ -178,7 +165,6 @@ export default {
 }
 
 .basic-2 {
-    // background-color: #fbfbfb;
     margin-top: 50px;
 }
 
