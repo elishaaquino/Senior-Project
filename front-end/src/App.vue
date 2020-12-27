@@ -1,28 +1,23 @@
 <template>
   <div id = "app">
-      <b-navbar class="navbar navbar-expand">
-         <router-link to="/" class="navbar-brand">NearBites</router-link>
+      <b-navbar class="navbar navbar-expand" :sticky="true">
+         <router-link to="/" class="navbar-brand"><span class="text-danger">NearBites</span></router-link>
          <div class="navbar-nav mr-auto">
             <li class="nav-item">
-            <router-link to="/users" class="nav-link">Users</router-link>
+               <router-link to="/users" class="nav-link">USERS</router-link>
             </li>
          </div>
 
          <b-navbar-nav class="ml-auto">
-            <b-nav-form v-if="this.$route.name !== 'about'">
+            <b-nav-form class="navsearch" v-if="this.$route.name !== 'about'">
                <b-form-input size="sm" class="mr-sm-2" placeholder="Search" v-model="search"
                   @submit.prevent="searchResults()"></b-form-input>
                <b-button size="sm" class="my-2 my-sm-0" type="submit"
                   @click="searchResults()">Search</b-button>
             </b-nav-form>
 
-            <b-nav-item-dropdown right v-if="isLoggedIn">
-               <template #button-content>
-                  <em>User</em>
-               </template>
-               <b-dropdown-item @click=profile()>Profile</b-dropdown-item>
-               <b-dropdown-item @click="logOut()">Sign Out</b-dropdown-item>
-            </b-nav-item-dropdown>
+            <b-nav-item v-if="isLoggedIn" @click=profile()><span class="text-danger">PROFILE</span></b-nav-item>
+            <b-nav-item v-if="isLoggedIn" @click="logOut()"><span class="text-danger">SIGN OUT</span></b-nav-item>
             
             <b-nav-item to="/signIn" v-else>Sign In</b-nav-item>
          </b-navbar-nav>
@@ -63,13 +58,23 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 .sign-in {
    justify-content: right;
    flex: 1;
 }
 
 .navbar {
-   background: rgba(255,255,255);
+   background: rgba(255,255,255,0.5);
+   font-family: "Anton";
 }
+
+.navbar-brand {
+   padding-left: 30px;
+}
+
+.nav-item {
+   padding-right: 30px;
+}
+
 </style>

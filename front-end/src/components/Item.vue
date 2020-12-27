@@ -49,7 +49,7 @@ export default {
 <style lang="scss" scoped>
 .item {
    padding: 20px;
-   background-color: white;
+   background-color: #FCF5F3;
    border-radius: 5px;
    border: 1px solid #DFE3E8;
    box-sizing: border-box;

@@ -7,12 +7,10 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-container">
-                            <h1>FEELING HUNGRY FOR</h1>
-                            <h1>HOME COOKED FOOD?</h1>
+                            <h1>Hungry for home cooked food?</h1>
                             <b-form @submit.prevent="searchResults()">
-                              <input class="search" type="text" placeholder="Search.." name="search" 
-                                 v-model="search"/>
-                              <b-button  class="search-button" size="sm" @click="searchResults()"><b-icon icon="search"></b-icon></b-button>
+                                <b-button  class="search-button" size="sm" @click="searchResults()"><b-icon icon="search" variant="danger"></b-icon></b-button>
+                                <input class="search" type="text" placeholder="Search.." name="search" v-model="search"/>
                             </b-form>
                             <p class="p-heading p-large"><strong>Suggested: </strong>pasta, brownies, kimchi</p>
                         </div>
@@ -22,25 +20,6 @@
         </div> <!-- end of header-content -->
     </header> <!-- end of header -->
     <!-- end of header -->
-
-    <div id="whoWeAre" class="cards-2">
-        <div class="container" style="max-width: 540px;">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title">WHO ARE WE?</h3>
-                            <p>NearBites is a platform for community members to buy local homemade foods and sell their tasty creations. Whether you're looking for the perfect homemade gift or hoping to satisfy your cravings, NearBites builds a sense of community and trust amongst local homebakers and chefs.</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of cards-2 -->
-    <!-- end of whoWeAre -->
 
     <!-- Team -->
     <div class="basic-2">
@@ -90,6 +69,26 @@
         </div> <!-- end of container -->
     </div> <!-- end of basic-2 -->
     <!-- end of popular items -->
+
+    <div id="whoWeAre" class="cards-2">
+        <div class="container" style="max-width: 540px;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">WHO ARE WE?</h3>
+                            <p>NearBites is a platform for community members to buy local homemade foods and sell their tasty creations. Whether you're looking for the perfect homemade gift or hoping to satisfy your cravings, NearBites builds a sense of community and trust amongst local homebakers and chefs.</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of cards-2 -->
+    <!-- end of whoWeAre -->
+
   </div>
 </template>
 
@@ -113,68 +112,65 @@ export default {
 
 <style lang="scss">
 .header {
-	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('../../public/images/header-background.jpg') center center no-repeat;
-	background-size: cover;
-  margin-left: none;
-  margin-right: none;
-  padding-left: none;
-  padding-right: none;
-  max-width: none;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('../../public/images/header-background.jpg') center center no-repeat;
+    background-size: cover;
+    margin-left: none;
+    margin-right: none;
+    padding-left: none;
+    padding-right: none;
+    max-width: none;
 }
 
 .header .header-content {
-	padding-top: 8rem;
-	padding-bottom: 2.125rem;
+	padding-top: 10rem;
+	padding-bottom: 10rem;
 	text-align: center;
 }
 
-.header .text-container {
-	margin-bottom: 3rem;
-}
-
 .header h1 {
-	margin-bottom: 0.5rem;
-	color: #fff;
+	margin-bottom: 1rem;
+    color: #FCF5F3;
+    font-family: "Anton";
 }
 
 .header .p-large {
-	margin-bottom: 2rem;
-	color: #dfe5ec;
-}
-
-.header .btn-solid-lg {
-	margin-right: 0.5rem;
-	margin-bottom: 1.25rem;
+	margin-top: .5rem;
+    color: #B3A89B;
 }
 
 .cards-2 {
 	padding-top: 2rem;	
-	padding-bottom: 1.25rem;	
-	background-color: #fbfbfb;
+    // padding-bottom: 2rem;	
+    background-color: #ECEDEA;
 }
 
 .cards-2 .section-title {
-	margin-bottom: 0.5rem;
-	text-align: center;
+	// text-align: center;
 }
 
 .cards-2 .card {
-	margin-bottom: 1.25rem;
+	// margin-bottom: 1.25rem;
 	border: none;
-	background-color: transparent;
+	// background-color: transparent;
 }
 
 .cards-2 .card-body {
 	padding: 2rem 2rem 2rem 2rem;
-	border: 1px solid #ebe8e8;
-	border-bottom-left-radius: 0.375rem;
-	border-bottom-right-radius: 0.375rem;
-	background-color: #fff;
+	// border: 1px solid #ebe8e8;
+	// border-bottom-left-radius: 0.375rem;
+	// border-bottom-right-radius: 0.375rem;
+	background-color:#ECEDEA;
 }
 
 .cards-2 h3 {
-	margin-bottom: 0.75rem;
-	text-align: center;
+	// margin-bottom: 0.75rem;
+    // text-align: center;
+    font-family: "Anton";
+}
+
+.cards-2 p {
+    // color: white;
+    font-family: 'Barlow Condensed', sans-serif;
 }
 
 .cards-2 .container {
@@ -182,11 +178,18 @@ export default {
 }
 
 .basic-2 {
-	background-color: #fbfbfb;
+    // background-color: #fbfbfb;
+    margin-top: 50px;
 }
 
 .basic-2 h2 {
-	margin-bottom: 0.75rem;
+    margin-bottom: 2rem;
+    color: #000000;
+    font-family: "Anton";
+}
+
+.basic-2 a {
+    color: #EADFCD;
 }
 
 .basic-2 .popular-items {
@@ -199,7 +202,6 @@ export default {
 
 /* Hover Animation */
 .basic-2 .image-wrapper {
-	overflow: hidden;
 	margin-bottom: 1.5rem;
 }
 
@@ -216,22 +218,26 @@ export default {
 /* end of hover animation */
 
 .basic-2 .popular-items .p-large {
-	margin-bottom: 0.25rem;
+    margin-bottom: 0.25rem;
 }
 
 .search {
-   display: inline-block;
-   width: 300px;
-   vertical-align: middle;
-   border: 1px solid #bdbdbd;
-   border-top-left-radius: 0.25rem;
-   border-bottom-left-radius: 0.25rem;
-   height: 1.9em;
-   padding-left: 8px;
+    display: inline-block;
+    width: 300px;
+    vertical-align: middle;
+    border: 0px;
+    border-radius: 0 .25rem .25rem 0;
+    height: 3.5em;
+    padding-left: 8px;
 }
 
 .search-button {
-   vertical-align: middle;
+    vertical-align: middle;
+    height: 4em;
+    background-color: white;
+    border: none;
+    border-radius: .25rem 0 0 .25rem;
+    padding-left: 25px;
 }
 
 </style>
