@@ -14,8 +14,8 @@
 
             <!-- required item information -->
             <div class="item-details col-3 pl-0">
-                <strong>{{itemName}}</strong>
-                <p>${{price}}</p>
+                <div class="itemName">{{itemName}}</div>
+                <div class="price"><strong><p>${{price}}</p></strong></div>
                 <p>{{amount}}</p>
                 <div @click="toaddstorepage(seller_firstName, seller_lastName, seller_photo)">
                     <router-link :to="{ name: 'storepage', params: { storename: seller_firstName+seller_lastName, sellerId: sellerId, seller_photo: seller_photo} }">
@@ -23,7 +23,7 @@
                             <div class="usr-img col-3 pr-0">
                                 <img :src="seller_photo">
                             </div>
-                            <div class="col pl-0">
+                            <div class="seller col pl-0">
                                 <strong>Made by {{ seller_firstName }}</strong>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
             <div class="col-3">
                 <div @click="toaddreview(seller_firstName, itemName, id)">
                     <router-link :to="{ name: 'addreview', params: { id: id } }">
-                        <b-button class="add-review-button">+ Add Review</b-button>
+                        <b-button class="add-review-button">Add Review</b-button>
                     </router-link>
                 </div>
             </div>
@@ -149,20 +149,43 @@ export default {
 }
 .contact-button {
     padding:0.3em 1.2em;
-    border: 2px solid #000000;
+    margin:0 0.3em 0.3em 0;
     border-radius:2em;
-    background-color:#ffffff;
-    color:black;
-    width: 75%;
-    cursor: pointer;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:300;
+    color:#000000;
+    background-color:#D25B3E;
+    text-align:center;
+    transition: all 0.2s;
+    width: 80%;
+    border: none;
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
 }
 .add-review-button {
     padding:0.3em 1.2em;
-    border: 2px solid #000000;
+    margin:0 0.3em 0.3em 0;
     border-radius:2em;
-    background-color:#ffffff;
-    color:black;
-    width: 75%;
-    cursor: pointer;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:300;
+    color:#000000;
+    background-color:#D25B3E;
+    text-align:center;
+    transition: all 0.2s;
+    width: 80%;
+    border: none;
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
+}
+.seller {
+    color: #000000;
+}
+.itemName{
+    font-size: 25px;
+}
+.price {
+    font-size: 30px;
 }
 </style>

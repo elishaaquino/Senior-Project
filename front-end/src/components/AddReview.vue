@@ -120,14 +120,18 @@ export default {
 
 .add-item-button {
     padding:0.3em 1.2em;
-    border: 2px solid #000000;
+    margin:0 0.3em 0.3em 0;
     border-radius:2em;
-    background-color:#000000;
-    width: 45%;
-    margin-top: 5%;
-    margin-left: 27.5%;
-    margin-right: 27.5%;
-    cursor: pointer;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:300;
+    color:#000000;
+    background-color:#D25B3E;
+    text-align:center;
+    transition: all 0.2s;
+    border: none;
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
 }
 
 .add-item-button:hover{

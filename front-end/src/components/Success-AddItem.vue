@@ -43,12 +43,18 @@ export default {
 }
 .back-button {
     padding:0.3em 1.2em;
-    border: 2px solid #000000;
+    margin:0 0.3em 0.3em 0;
     border-radius:2em;
-    background-color:#ffffff;
-    color:black;
-    width: 20%;
-    cursor: pointer;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:300;
+    color:#000000;
+    background-color:#D25B3E;
+    text-align:center;
+    transition: all 0.2s;
+    border: none;
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
 }
 .check {
     width: 15%;

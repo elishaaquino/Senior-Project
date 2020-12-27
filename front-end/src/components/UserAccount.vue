@@ -8,7 +8,7 @@
                         <div v-if="btn_id === 0">
                             <button class="selected" @click="set_SelectedButton(0)">Selling</button>
                             <button class="unselected" @click="set_SelectedButton(1)">Buying</button>
-                            <div class="addButton" v-if="btn_id === 0">
+                            <div class="" v-if="btn_id === 0">
                                 <b-button class="addItem" href="../additem">ADD ITEM</b-button>
                             </div>
                         </div>
@@ -154,8 +154,8 @@ export default {
         background-color:#D25B3E;
         text-align:center;
         transition: all 0.2s;
-        width: 65%;
-        border-color: white;
+        width: 80%;
+        border: none;
         font-family: 'Archivo Black', sans-serif;
         color: white;
     }

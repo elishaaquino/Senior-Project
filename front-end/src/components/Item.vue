@@ -59,11 +59,12 @@ export default {
       transform: scale(1.1, 1.1);
    }
    .item-name {
+      padding-top: 5px; 
       color: black;
-      font-weight: bold;
    }
    .item-info {
       color: black;
+      font-weight: bold;
    }
    display: inline-block;
    width: 14rem;
