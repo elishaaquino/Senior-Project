@@ -3,22 +3,22 @@
         <div class="profile-main">
             <div class="profile-header">
                 <div class="container user-detail">
-                    <div class="user-image">
+                    <div class="col-4 user-image">
                         <img :src="photo">
                         <div v-if="btn_id === 0">
                             <button class="selected" @click="set_SelectedButton(0)">Selling</button>
                             <button class="unselected" @click="set_SelectedButton(1)">Buying</button>
+                            <div class="" v-if="btn_id === 0">
+                                <b-button class="addItem" href="../additem">ADD ITEM</b-button>
+                            </div>
                         </div>
                         <div v-if="btn_id === 1">
                             <button class="unselected" @click="set_SelectedButton(0)">Selling</button>
                             <button class="selected" @click="set_SelectedButton(1)">Buying</button>
                         </div>
-                        <div class="addButton">
-                            <b-button class="addItem" href="../additem">+ Add Item</b-button>
-                        </div>
                     </div>
-                    <div class="user-data">
-                        <h2>Welcome Back, <strong>{{userUsername}}</strong></h2>
+                    <div class="col-8 user-data">
+                        <h2>Welcome back, <strong>{{userUsername}}</strong>.</h2>
                     </div>
                 </div>
                 <div class="container">
@@ -151,10 +151,16 @@ export default {
         text-decoration:none;
         font-weight:300;
         color:#000000;
-        background-color:#ffffff;
+        background-color:#D25B3E;
         text-align:center;
         transition: all 0.2s;
-        width: 65%;
+        width: 80%;
+        border: none;
+        font-family: 'Archivo Black', sans-serif;
+        color: white;
+    }
+    .addButton {
+        padding-top: 0.5rem;
     }
     .profile-main{
         margin: 0 auto;
@@ -182,8 +188,5 @@ export default {
         width: 75%;
         padding-left: 27px;
         margin-top: 1rem;
-    }
-    .addButton {
-        padding-top: 0.5rem;
     }
 </style>

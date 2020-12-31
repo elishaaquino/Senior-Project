@@ -48,7 +48,7 @@
             <label for="diet">Dietary Restrictions</label>
             <input class="input-response field" id="diet" v-model="diet"/>
 
-            <button class="add-item-button">+ Add Item</button>
+            <button class="addItem">+ Add Item</button>
 
         </form>
     </div>
@@ -226,16 +226,20 @@ input[type="file"] {
     max-height:50%;
 }
 
-.add-item-button {
+.addItem {
     padding:0.3em 1.2em;
-    border: 2px solid #000000;
+    margin:0 0.3em 0.3em 0;
     border-radius:2em;
-    background-color:#ffffff;
-    width: 45%;
-    margin-top: 5%;
-    margin-left: 27.5%;
-    margin-right: 27.5%;
-    cursor: pointer;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:300;
+    color:#000000;
+    background-color:#D25B3E;
+    text-align:center;
+    transition: all 0.2s;
+    border: none;
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
 }
 
 .add-item-button:hover{

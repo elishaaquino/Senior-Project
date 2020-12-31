@@ -49,7 +49,7 @@ export default {
 <style lang="scss" scoped>
 .item {
    padding: 20px;
-   background-color: white;
+   background-color: #FCF5F3;
    border-radius: 5px;
    border: 1px solid #DFE3E8;
    box-sizing: border-box;
@@ -59,11 +59,12 @@ export default {
       transform: scale(1.1, 1.1);
    }
    .item-name {
+      padding-top: 5px; 
       color: black;
-      font-weight: bold;
    }
    .item-info {
       color: black;
+      font-weight: bold;
    }
    display: inline-block;
    width: 14rem;
