@@ -95,6 +95,10 @@ public class Item {
         this.photos = photos;
     }
 
+    public void addPhotos(List<String> photos) {
+        this.photos.addAll(photos);
+    }
+
     public List<Review> getReviews() {
         return reviews;
     }

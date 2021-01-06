@@ -31,6 +31,11 @@ export const router = new Router({
          component: () => import("./components/AddItem")
       },
       {
+         path: "/editItem/:id",
+         name: "editItem",
+         component: () => import("./components/EditItem")
+      },
+      {
          path: "/displayitem/:id",
          name: "displayitem",
          component: () => import("./components/DisplayItem")
