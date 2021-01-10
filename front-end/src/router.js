@@ -46,6 +46,11 @@ export const router = new Router({
          component: () => import("./components/SignUp")
       },
       {
+         path: "/updateUser",
+         name: "updateUser",
+         component: () => import("./components/UpdateUser")
+      },
+      {
          path: "/addreview/:id",
          name: "addreview",
          component: () => import("./components/AddReview")

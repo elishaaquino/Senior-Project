@@ -19,6 +19,7 @@
                     </div>
                     <div class="col-8 user-data">
                         <h2>Welcome back, <strong>{{userUsername}}</strong>.</h2>
+                        <b-button class="updateUser" href="../updateUser">Edit Profile</b-button>
                     </div>
                 </div>
                 <div class="container">
