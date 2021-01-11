@@ -30,12 +30,15 @@
                     </router-link>
                 </div>
                 <div class="row mt-3 pl-3">
-                    <b-button class="contact-button">Message Seller</b-button>
+                    <b-button class="contact-button" v-if="ownsItem" @click="editItem">Edit Item</b-button>
+                    <b-button class="contact-button" v-else>Message Seller</b-button>
                 </div>
             </div>
 
             <!-- extra information -->
             <div class="extra-info col-3">
+                <strong>Description</strong>  
+                <p> {{desc}} </p>
                 <strong>Extra Information</strong>
                 <strong><p>Contains:</p></strong>
                 <p>{{allergens}}</p>
@@ -91,8 +94,12 @@ export default {
             allergens: '',
             diet: '',
             images: [],
-            reviews: []
+            reviews: [],
+            desc: ''
         };
+    },
+    computed: {
+      ownsItem() {return this.sellerId === JSON.parse(localStorage.user)["id"]}
     },
     methods: {
         toaddreview(seller_firstName, itemName, id) {
@@ -116,6 +123,7 @@ export default {
               this.diet = res.extraInfo.dietaryRestric;
               this.images = res.photos;
               this.reviews = res.reviews;
+              this.desc = res.desc;
               
               return res.ownerId;
            }).then(resp => {
@@ -126,6 +134,9 @@ export default {
                  this.seller_photo = res.imageUrl;
               })
            });
+        },
+        editItem() {
+           this.$router.push("/editItem/" + this.id);
         }
     },
     created() {

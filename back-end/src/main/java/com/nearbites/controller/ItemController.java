@@ -104,4 +104,24 @@ public class ItemController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editItem(@RequestBody Item item, @PathVariable String id) {
+        try {
+            Item _item = itemRepository.findById(id)
+                    .orElseThrow(() -> new Exception("Item not found with id: " + id));
+
+            _item.setName(item.getName());
+            _item.setPrice(item.getPrice());
+            _item.setQuantity(item.getQuantity());
+            _item.setDesc(item.getDesc());
+            _item.setExtraInfo(item.getExtraInfo());
+            _item.addPhotos(item.getPhotos());
+
+            _item = itemRepository.save(_item);
+            return new ResponseEntity<>(_item, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>((Item) null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
