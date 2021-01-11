@@ -25,6 +25,10 @@ class ItemService {
   getItem(id) {
      return http.get('/items/' + id);
   }
+
+  editItem(id, body) {
+     return http.put('/items/' + id, body);
+  }
 }
 
 export default new ItemService();
