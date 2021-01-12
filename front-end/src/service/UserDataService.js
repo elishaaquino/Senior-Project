@@ -7,6 +7,10 @@ class UserDataService {
   getUser(id) {
      return http.get('/users/' + id);
   }
+
+  updateUser(body) {
+    return http.put('/users/updateUser', body);
+ }
 }
 
 export default new UserDataService();

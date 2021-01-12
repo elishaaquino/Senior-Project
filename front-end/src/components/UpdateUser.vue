@@ -5,10 +5,11 @@
         <!-- form -->
         <form 
             class="form1" 
+            @submit.prevent="updateUser"
         >
 
             <label for="first-name">First Name</label>
-            <input type="text" class="input-response field" id="first-name" value=".domain.com"/>
+            <input type="text" class="input-response field" id="first-name" v-model="firstName"/>
 
             <label for="last-name">Last Name</label>
             <input class="input-response field" id="last-name" v-model="lastName"/>
@@ -16,19 +17,69 @@
             <label for="phone-number">Phone Number</label>
             <input class="input-response field" id="phone-number" v-model="phoneNumber"/>
 
+            <label for="email">Email</label>
+            <input class="input-response field" id="email" v-model="email"/>
+
             <label for="insta-handle">Instagram Handle</label>
             <input class="input-response field" id="insta-handle" v-model="instaHandle"/>
 
             <label for="facebook-url">Facebook URL</label>
             <input class="input-response field" id="facebook-url" v-model="facebookUrl"/>
 
-            <button class="updateProfile">+ Update Profile</button>
+            <button class="updateProfile">Update Profile</button>
 
         </form>
     </div>
 </template>
 
 <script>
+import UserDataService from '../service/UserDataService';
+
+export default {
+   name: "Edit-Item",
+   data() {
+       return {
+           firstName: '',
+           lastName: '',
+           phoneNumber: '',
+           email: '',
+           instaHandle: '',
+           facebookUrl: '',
+       }
+   },
+   methods: {
+        //upon submission
+        updateUser: function() { 
+            let resp = {
+                id: JSON.parse(localStorage.user)["id"],
+                firstName: this.firstName,
+                lastName: this.lastName,
+                contact: {
+                    phoneNumber: this.phoneNumber,
+                    email: this.email,
+                    instagramHandle: this.instaHandle,
+                    facebookUrl: this.facebookUrl
+                }
+            }
+            UserDataService.updateUser(resp).then(this.$router.push('/userAccount/' + JSON.parse(localStorage.user)["username"]));
+        },
+        getUserInfo() {
+            UserDataService.getUser(this.$route.params.id).then(resp => {
+                let res = resp.data;
+                console.log(res);
+                this.firstName = res.firstName;
+                this.lastName = res.lastName;
+                this.phoneNumber = res.contact.phoneNumber;
+                this.email = res.contact.email;
+                this.instaHandle = res.contact.instagramHandle;
+                this.facebookUrl = res.contact.facebookUrl; 
+            });
+        }
+   },
+   created() {
+      this.getUserInfo();
+   }
+};
 </script>
 
 <style scoped>

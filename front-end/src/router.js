@@ -51,7 +51,7 @@ export const router = new Router({
          component: () => import("./components/SignUp")
       },
       {
-         path: "/updateUser",
+         path: "/updateUser/:id",
          name: "updateUser",
          component: () => import("./components/UpdateUser")
       },

@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-8 user-data">
                         <h2>Welcome back, <strong>{{userUsername}}</strong>.</h2>
-                        <b-button class="updateUser" href="../updateUser">Edit Profile</b-button>
+                        <b-button class="updateUser" @click="updateUser">Edit Profile</b-button>
                     </div>
                 </div>
                 <div class="container">
@@ -91,6 +91,10 @@ export default {
                         }
                     }
                 );
+            },
+            updateUser() {
+                var userId = JSON.parse(localStorage.user)["id"];
+                this.$router.push("/updateUser/" + userId);
             }
         },
         created() {
@@ -156,6 +160,22 @@ export default {
         text-align:center;
         transition: all 0.2s;
         width: 80%;
+        border: none;
+        font-family: 'Archivo Black', sans-serif;
+        color: white;
+    }
+    .updateUser {
+        padding:0.3em 1.2em;
+        margin:0 0.3em 0.3em 0;
+        border-radius:2em;
+        box-sizing: border-box;
+        text-decoration:none;
+        font-weight:300;
+        color:#000000;
+        background-color:#D25B3E;
+        text-align:center;
+        transition: all 0.2s;
+        width: 30%;
         border: none;
         font-family: 'Archivo Black', sans-serif;
         color: white;
