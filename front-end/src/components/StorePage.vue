@@ -17,6 +17,8 @@
                         <strong>Contact Information</strong>
                         <strong><p>Phone: {{ phone }}</p></strong>
                         <strong><p>Email: {{ email }}</p></strong>
+                        <strong><p>Instagram: {{ instagramHandle }}</p></strong>
+                        <strong><p>Facebook: {{ facebookUrl }}</p></strong>
                         <p>{{ numItems }} items</p>
                     </div>
                 </div>
@@ -71,6 +73,8 @@ export default {
                 sellerId: '',
                 phone: '',
                 email: '',
+                instagramHandle: '',
+                facebookUrl: '',
                 storename: '',
                 sellingItems: [],
                 reviews: []
@@ -92,6 +96,8 @@ export default {
                 UserDataService.getUser(this.sellerId).then(
                     resp => {
                         this.phone = resp.data["contact"]["phoneNumber"];
+                        this.instagramHandle = resp.data["contact"]["instagramHandle"];
+                        this.facebookUrl = resp.data["contact"]["facebookUrl"];
                         this.email = resp.data["contact"]["email"];
                         
                         this.reviews = resp.data["reviews"];

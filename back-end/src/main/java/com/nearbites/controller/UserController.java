@@ -137,4 +137,18 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PutMapping("/updateUser")
+    public User updateUserProfile(@RequestBody User entity) {
+        Optional<User> user = userRepository.findById(entity.getId());
+
+        User newEntity = user.get();
+        newEntity.setFirstName(entity.getFirstName());
+        newEntity.setLastName(entity.getLastName());
+        newEntity.setContact(entity.getContact());
+
+        newEntity = userRepository.save(newEntity);
+
+        return newEntity;
+    }
 }
