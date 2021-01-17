@@ -1,5 +1,6 @@
 <template>
     <div class="edit-item">
+
         <!-- form -->
         <form 
             class="form1" 
@@ -46,6 +47,11 @@
 
             <button class="editItem">Edit Item</button>
 
+            <b-button class="deleteItem" v-b-modal.modal-1>DELETE ITEM</b-button>
+            <b-modal id="modal-1" title="Delete Item?" @ok="deleteItem" :ok-disabled="false">
+                <p class="my-4">Are you sure you want to delete this item? This action cannot be undone.</p>
+            </b-modal>
+
         </form>
     </div>
 </template>
@@ -68,8 +74,8 @@ export default {
            allergens: '',
            diet: '',
        }
-   },
-   methods: {
+    },
+    methods: {
 
         // upon submission
         editItem: function(e) {
@@ -149,8 +155,8 @@ export default {
                         URL.createObjectURL(f[i])
                     );
             }
-      },
-      getItemInfo() {
+        },
+        getItemInfo() {
            ItemService.getItem(this.$route.params.id).then(resp => {
               let res = resp.data;
               this.itemName = res.name;
@@ -160,6 +166,11 @@ export default {
               this.diet = res.extraInfo.dietaryRestric;
               this.desc = res.desc;
            });
+        },
+        deleteItem() {
+            ItemService.deleteItem(this.$route.params.id).then(
+                this.$router.push('/deleteitemsuccess/')
+            )
         }
    },
    created() {
@@ -232,7 +243,7 @@ input[type="file"] {
 }
 
 .editItem {
-    padding:0.3em 1.2em;
+    padding:1.5em .5em 1.5em .5em;
     margin:0 0.3em 0.3em 0;
     border-radius:2em;
     box-sizing: border-box;
@@ -245,6 +256,20 @@ input[type="file"] {
     border: none;
     font-family: 'Archivo Black', sans-serif;
     color: white;
+}
+
+.deleteItem {
+    padding:0.3em 1.2em;
+    margin:2em 0.3em 0.3em 0;
+    border-radius:2em;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:300;
+    color:#000000;
+    background-color:white;
+    transition: all 0.2s;
+    font-family: 'Archivo Black', sans-serif;
 }
 
 .edit-item-button:hover{
