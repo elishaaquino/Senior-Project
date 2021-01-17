@@ -15,7 +15,8 @@ export default new Vuex.Store({
   })],
   state: {
     seller_photo: "",
-    seller: ""
+    seller: "",
+    search: ""
   },
   getters: {
     seller_photo: state => {
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     },
     changeSeller (state, payload) {
       state.seller = payload
+    },
+    isSearching(state, payload) {
+      state.search = payload;
     }
   },
   actions: {}

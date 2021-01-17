@@ -177,7 +177,7 @@ export default {
 .form1 {
     display: flex;
     flex-direction: column;
-    padding: 0% 30% 30% 30%;
+    padding: 0% 30% 5% 30%;
 }
 
 .field {
