@@ -9,11 +9,9 @@
          </div>
 
          <b-navbar-nav class="ml-auto">
-            <b-nav-form class="navsearch" v-if="this.$route.name !== 'about'">
-               <b-form-input size="sm" class="mr-sm-2" placeholder="Search" v-model="search"
-                  @submit.prevent="searchResults()"></b-form-input>
-               <b-button size="sm" class="my-2 my-sm-0" type="submit"
-                  @click="searchResults()">Search</b-button>
+            <b-nav-form  class="navsearch" v-if="this.$route.name !== 'about'" @submit.prevent="searchResults">
+               <b-button type="submit" class="search-button"><b-icon icon="search" variant="danger" size="sm" class="my-2 my-sm-0"></b-icon></b-button>
+               <b-form-input size="sm" class="mr-sm-2" type="text" v-model="search" placeholder="search"></b-form-input>
             </b-nav-form>
 
             <b-nav-item v-if="isLoggedIn" @click=profile()><span class="text-danger">PROFILE</span></b-nav-item>
@@ -34,11 +32,16 @@ export default {
    name: "app",
    data () {
       return {
-         search: ''
+         search: ""
       }
    },
    computed: {
-      isLoggedIn() {return this.$store.state.auth.status.loggedIn;}
+      isLoggedIn() {
+         return this.$store.state.auth.status.loggedIn;
+      },
+      isSearching() {
+         return this.$store.state.search;
+      }
    },
    methods: {
       profile() {
@@ -50,9 +53,12 @@ export default {
          sessionStorage.clear();
       },
       searchResults() {
+         this.$store.commit("isSearching", this.search);
          if (this.search === '')
             this.search = 'f438fh89w2rji2gjr03gj8430gh30hg430';
+         this.$router.push({ name: "about" });
          this.$router.push({ name: "results", params: {keyword:this.search}});
+         this.search="";
       }
    }
 }
@@ -75,6 +81,11 @@ export default {
 
 .nav-item {
    padding-right: 30px;
+}
+
+.search-button {
+   background-color: white;
+   height: 2em;
 }
 
 </style>

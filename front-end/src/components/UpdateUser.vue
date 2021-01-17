@@ -66,7 +66,6 @@ export default {
         getUserInfo() {
             UserDataService.getUser(this.$route.params.id).then(resp => {
                 let res = resp.data;
-                console.log(res);
                 this.firstName = res.firstName;
                 this.lastName = res.lastName;
                 this.phoneNumber = res.contact.phoneNumber;
@@ -91,7 +90,7 @@ export default {
 .form1 {
     display: flex;
     flex-direction: column;
-    padding: 0% 30% 30% 30%;
+    padding: 0% 30% 5% 30%;
 }
 
 .field {
@@ -110,39 +109,6 @@ export default {
     margin-bottom: 50px;
     margin-bottom: 27px;
     font-family: 'Ubuntu', sans-serif;
-}
-
-.img-upload-div {
-    padding: 3% 0% 5% 0%;
-}
-
-input[type="file"] {
-    display: none;
-}
-
-.img-upload {
-    text-align: center;
-    border-radius: 2em;
-    width: 100%;
-    padding: 5%;
-    cursor: pointer;
-}
-
-.img-upload-max {
-    text-align: center;
-    border: 1px solid #000000;
-    border-radius: 2em;
-    width: 100%;
-    padding: 5%;
-}
-
-.img-upload:hover{
-    background-color: grey;
-}
-
-.img-box {
-    max-width:50%;
-    max-height:50%;
 }
 
 .updateProfile {
