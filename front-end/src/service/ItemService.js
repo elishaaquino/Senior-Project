@@ -29,6 +29,10 @@ class ItemService {
   editItem(id, body) {
      return http.put('/items/' + id, body);
   }
+
+  deleteItem(id) {
+    return http.delete('/items/delete/' + id);
+ }
 }
 
 export default new ItemService();
