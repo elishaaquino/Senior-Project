@@ -31,7 +31,7 @@
                 </div>
                 <div class="row mt-3 pl-3">
                     <b-button class="contact-button" v-if="ownsItem" @click="editItem">Edit Item</b-button>
-                    <b-button class="contact-button" v-else>Message Seller</b-button>
+                    <b-button class="contact-button" v-else @click="chat()">Message Seller</b-button>
                 </div>
             </div>
 
@@ -137,6 +137,9 @@ export default {
         },
         editItem() {
            this.$router.push("/editItem/" + this.id);
+        },
+        chat() {
+           this.$router.push("/chat/" + this.sellerId);
         }
     },
     created() {

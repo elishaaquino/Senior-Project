@@ -84,6 +84,11 @@ export const router = new Router({
          path: "/onboarding",
          name: "onboarding",
          component: () => import("./components/Onboarding")
+      },
+      {
+         path:"/chat/:sellerId",
+         name: "chat",
+         component: () => import("./components/Chat")
       }
    ]
 });
