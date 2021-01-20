@@ -13,10 +13,12 @@
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.19.0",
     "core-js": "^3.6.5",
+    "sockjs-client": "^1.5.0",
     "vue": "^2.6.12",
     "vue-router": "^3.4.8",
     "vuex": "^3.6.0",
-    "vuex-persistedstate": "^4.0.0-beta.1"
+    "vuex-persistedstate": "^4.0.0-beta.1",
+    "webstomp-client": "^1.2.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
