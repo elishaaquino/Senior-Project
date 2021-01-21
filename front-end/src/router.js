@@ -13,10 +13,6 @@ export const router = new Router({
          component: () => import("./components/About")
       },
       {
-         path: "/users",
-         component: () => import("./components/UserList")
-      },
-      {
          path: "/results/:keyword",
          name: "results",
          component: () => import("./components/Results")

@@ -2,11 +2,6 @@
   <div id = "app">
       <b-navbar class="navbar navbar-expand" :sticky="true">
          <router-link to="/" class="navbar-brand"><span class="text-danger">NearBites</span></router-link>
-         <div class="navbar-nav mr-auto">
-            <li class="nav-item">
-               <router-link to="/users" class="nav-link">USERS</router-link>
-            </li>
-         </div>
 
          <b-navbar-nav class="ml-auto">
             <b-nav-form  class="navsearch" v-if="this.$route.name !== 'about'" @submit.prevent="searchResults">
