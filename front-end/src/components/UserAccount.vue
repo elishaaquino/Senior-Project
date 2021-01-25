@@ -5,16 +5,11 @@
                 <div class="container user-detail">
                     <div class="col-4 user-image">
                         <img :src="photo">
-                        <div v-if="btn_id === 0">
-                            <button class="selected" @click="set_SelectedButton(0)">Selling</button>
-                            <button class="unselected" @click="set_SelectedButton(1)">Buying</button>
+                        <div>  
+                            <h3 class="selected"><strong>Your Items</strong></h3>
                             <div class="" v-if="btn_id === 0">
-                                <b-button class="addItem" href="../additem">ADD ITEM</b-button>
+                                <b-button class="addItem" href="../additem">Add Item</b-button>
                             </div>
-                        </div>
-                        <div v-if="btn_id === 1">
-                            <button class="unselected" @click="set_SelectedButton(0)">Selling</button>
-                            <button class="selected" @click="set_SelectedButton(1)">Buying</button>
                         </div>
                     </div>
                     <div class="col-8 user-data">
@@ -71,12 +66,6 @@ export default {
             }
         },
         methods: {
-            set_SelectedButton(value){
-
-                this.btn_id=value;
-
-            },
-
             getItems() {
 
                 var userId = JSON.parse(localStorage.user)["id"];
