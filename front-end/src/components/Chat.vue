@@ -20,8 +20,8 @@
           <p>{{sellerName}}</p>
         </div>
           <ul>
-             <li v-for="msg in messages" :key="msg">
-                <p>{{msg}}</p>
+             <li v-for="(msg, idx) in messages" :key="idx">
+                <p :class="msg.senderName == sellerName ? 'sendersMessage' : 'recipientsMessage'">{{msg.content}}</p>
               </li>
           </ul>
         <div class="message-input">
@@ -34,7 +34,7 @@
             />
 
             <b-button size="sm" class="my-2 my-sm-0" type="submit"
-                  @click="send()">Send</b-button>
+                  @click="send()"> Send</b-button>
           </div>
         </div>
       </div>
@@ -60,12 +60,11 @@ export default {
       sellerPhoto: "",
       messages: [],
       text: "",
-      connected: false
+      connected: false,
     };
   },
   methods: {
     send() {
-      console.log("Send message:" + this.text);
       if (this.stompClient && this.stompClient.connected) {
          let message = {
             senderId: this.currentUserId,
@@ -76,6 +75,8 @@ export default {
             timestamp: new Date(),
          };
         this.stompClient.send("/app/chat", JSON.stringify(message), {});
+        this.messages.push(message);
+        this.text = "";
       }
     },
     connect() {
@@ -107,7 +108,7 @@ export default {
           let msgs = [];
           
           (resp.data).forEach(element => {
-             msgs.push(element.content);
+             msgs.push(element);
           });
           
           this.messages = msgs;
@@ -124,11 +125,51 @@ export default {
       this.sellerId = this.$route.params.sellerId;
       this.getSellerInfo();
       this.getMessages();
-  }
+  },
+  computed: {
+    onSend: function () {
+         return this.messages;
+      }
+  },
 };
 </script>
 
 <style scoped>
+ul{
+  list-style: none;
+  /* margin: 2;
+  padding: 2; */
+}
+
+ul li p{
+  display:inline-block;
+  clear: both;
+  padding: 8px;
+  border-radius: 15px;
+  margin-bottom: 1px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.sendersMessage {
+  background: #eee;
+  float: left;
+}
+.recipientsMessage {
+  float: right;
+  background: #0084ff;
+  color: #fff;
+  margin-right: 10px;
+  
+}
+.sendersMessage + .recipientsMessage {
+  border-bottom-right-radius: 5px;
+}
+.sendersMessage + .sendersMessage {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.sendersMessage:last-of-type {
+  border-bottom-right-radius: 30px;
+}
 #frame {
   width: 100%;
   min-width: 360px;
@@ -338,13 +379,13 @@ export default {
 #frame #sidepanel #contacts::-webkit-scrollbar-thumb {
   background-color: #243140;
 }
-#frame #sidepanel #contacts ul li.contact {
+/* #frame #sidepanel #contacts ul li.contact {
   position: relative;
   padding: 10px 0 15px 0;
   font-size: 0.9em;
   cursor: pointer;
-}
-@media screen and (max-width: 735px) {
+} */
+/* @media screen and (max-width: 735px) {
   #frame #sidepanel #contacts ul li.contact {
     padding: 6px 0 46px 8px;
   }
@@ -431,7 +472,7 @@ export default {
   padding: 0 2px 0 0;
   margin: 0 0 0 1px;
   opacity: 0.5;
-}
+} */
 #frame #sidepanel #bottom-bar {
   position: absolute;
   width: 100%;
@@ -488,7 +529,7 @@ export default {
   float: right;
   width: 60%;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
   position: relative;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -552,7 +593,7 @@ export default {
 #frame .content .messages::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.3);
 }
-#frame .content .messages ul li {
+/* #frame .content .messages ul li {
   display: inline-block;
   clear: both;
   float: left;
@@ -595,7 +636,7 @@ export default {
   #frame .content .messages ul li p {
     max-width: 300px;
   }
-}
+} */
 #frame .content .message-input {
   position: absolute;
   bottom: 0 !important;
