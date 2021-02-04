@@ -4,7 +4,9 @@ import com.amazonaws.services.rekognition.model.InvalidImageFormatException;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.nearbites.util.FileUtils;
+import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.commons.io.FilenameUtils;
 
@@ -48,7 +50,8 @@ public class AmazonS3ImageService extends AmazonClient {
 
             file.delete();
             fileUrl = getUrl().concat(fileName);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             System.err.println(e);
         }
 
