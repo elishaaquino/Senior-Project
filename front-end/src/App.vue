@@ -27,7 +27,7 @@
             <mdb-col md="3" lg="3" xl="3" class="mx-auto mt-3">
                <h6 class="text-uppercase mb-4 font-weight-bold">NEARBITES</h6>
                <p>Here you can make and order fresh food made with love, from your community, for you.</p>
-               <img src="https://img.icons8.com/metro/26/000000/like.png"/><img src="https://img.icons8.com/windows/32/000000/kawaii-bread-1.png"/>
+               <img src="https://img.icons8.com/windows/32/000000/kawaii-bread-1.png"/><img src="https://img.icons8.com/metro/26/000000/like.png"/><img src="https://img.icons8.com/ios-glyphs/32/000000/kawaii-milk.png"/>
             </mdb-col>
             <hr class="w-100 clearfix d-md-none" />
             <mdb-col md="2" lg="2" xl="2" class="mx-auto mt-3">
