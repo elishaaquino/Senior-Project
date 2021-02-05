@@ -21,6 +21,27 @@
     </header> <!-- end of header -->
     <!-- end of header -->
 
+    <div id="whoWeAre" class="cards-2">
+        <div class="container" style="max-width: 540px;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">WHO ARE WE?</h3>
+                            <p>NearBites is a platform for community members to buy local homemade foods and sell their tasty creations. Whether you're looking for the perfect homemade gift or hoping to satisfy your cravings, NearBites builds a sense of community and trust amongst local homebakers and chefs.</p>
+                        
+                            <p>Happiness is homemade.</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of cards-2 -->
+    <!-- end of whoWeAre -->
+    
     <!-- Team -->
     <div class="basic-2">
         <div class="container">
@@ -70,24 +91,6 @@
     </div> <!-- end of basic-2 -->
     <!-- end of popular items -->
 
-    <div id="whoWeAre" class="cards-2">
-        <div class="container" style="max-width: 540px;">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Card -->
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title">WHO ARE WE?</h3>
-                            <p>NearBites is a platform for community members to buy local homemade foods and sell their tasty creations. Whether you're looking for the perfect homemade gift or hoping to satisfy your cravings, NearBites builds a sense of community and trust amongst local homebakers and chefs.</p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of cards-2 -->
-    <!-- end of whoWeAre -->
 
   </div>
 </template>
@@ -149,7 +152,7 @@ export default {
 }
 
 .cards-2 .card-body {
-	padding: 2rem 2rem 2rem 2rem;
+	padding: 3rem 2rem 2rem 2rem;
 	background-color:#ECEDEA;
 }
 
