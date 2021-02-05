@@ -113,9 +113,9 @@ export default {
 
                         return item;
                     }
-                ).then(
+                ).catch(() => {alert("Photo size is too big. Please try a smaller image size.");window.location.reload(1);}).then(
                     resp => {
-                        ItemService.additem(resp).then(this.$router.push('/additemsuccess'))
+                        if (resp) ItemService.additem(resp).then(this.$router.push('/additemsuccess'));
                     }
                 ); 
             }

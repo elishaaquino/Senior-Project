@@ -3,6 +3,7 @@ package com.nearbites.controller.amazon;
 import com.nearbites.service.amazon.AmazonS3ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

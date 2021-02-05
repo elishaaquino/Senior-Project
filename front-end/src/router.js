@@ -67,7 +67,7 @@ export const router = new Router({
          component: () => import("./components/Success-AddItem")
       },
       {
-         path: "/addreviewsuccess",
+         path: "/addreviewsuccess/:id",
          name: "addreviewsuccess",
          component: () => import("./components/Success-AddReview")
       },
@@ -75,6 +75,11 @@ export const router = new Router({
          path: "/deleteitemsuccess",
          name: "deleteitemsuccess",
          component: () => import("./components/Success-DeleteItem")
+      },
+      {
+         path: "/edititemsuccess/:id",
+         name: "edititemsuccess",
+         component: () => import("./components/Success-EditItem")
       },
       {
          path: "/onboarding",

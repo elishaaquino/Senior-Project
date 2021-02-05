@@ -65,7 +65,7 @@ export default {
                 Promise.all([
                   this.addReviewToItem(id, review),
                   this.addReviewToUser(id, review)
-                ]).then((resps) => console.log(resps)).then(this.$router.push('/addreviewsuccess'))
+                ]).then((resps) => console.log(resps)).then(this.$router.push('/addreviewsuccess/' + this.$route.params.id))
                 .catch(e => console.error(e.message));
             }
             else {

@@ -117,7 +117,7 @@ export default {
                     }
                 ).then(
                     resp => {
-                        ItemService.editItem(this.$route.params.id, resp).then(this.$router.push('/displayitem/' + this.$route.params.id));
+                        ItemService.editItem(this.$route.params.id, resp).then(this.$router.push('/edititemsuccess/' + this.$route.params.id));
                     }
                 ); 
             }

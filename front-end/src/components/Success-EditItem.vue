@@ -1,16 +1,16 @@
 <template>
     <div class="container">
-            <div class="header row justify-content-md-center header-message">
-                <h1><strong>Your item has been permanently removed from your store.</strong></h1>
-            </div>
+        <div class="header row justify-content-md-center header-message">
+            <h1><strong>Your item has been edited.</strong></h1>
+        </div>
 
-            <div class="image row justify-content-md-center">
-                <img src="https://img.icons8.com/ios-filled/100/000000/garbage-truck.png"/>
-            </div>
+        <div class="image row justify-content-md-center">
+            <img src="https://img.icons8.com/windows/96/000000/edit--v3.png"/>
+        </div>
 
-            <div class="row justify-content-md-center">
-                <router-link class="back-button" :to="{ name: 'userAccount', params: { userUsername: username } }">Back to account page.</router-link>
-            </div>
+        <div class="row justify-content-md-center">
+            <router-link class="back-button" :to="{ name: 'displayitem', params: { id: id } }">Back to item page.</router-link>
+        </div>
     </div>
 </template>
 
@@ -20,11 +20,13 @@ export default {
     components: {},
         data () {
             return {
-                username: ''
+                username: '',
+                id: ''
             }
         },
         created() {
             this.username = JSON.parse(localStorage.user)["username"];
+            this.id = this.$route.params.id;
         },
     };
 </script>
