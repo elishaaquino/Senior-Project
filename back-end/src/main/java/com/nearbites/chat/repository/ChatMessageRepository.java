@@ -2,6 +2,7 @@ package com.nearbites.chat.repository;
 
 import com.nearbites.chat.model.ChatMessage;
 import com.nearbites.chat.model.MessageStatus;
+import com.nearbites.model.Item;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface ChatMessageRepository
             String senderId, String recipientId, MessageStatus status);
 
     List<ChatMessage> findByChatId(String chatId);
+
+    List<ChatMessage> findBySenderId(String senderId);
 }

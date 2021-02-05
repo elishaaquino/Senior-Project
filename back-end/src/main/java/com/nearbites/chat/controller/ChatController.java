@@ -2,10 +2,14 @@ package com.nearbites.chat.controller;
 
 import com.nearbites.chat.model.ChatMessage;
 import com.nearbites.chat.model.ChatNotification;
+import com.nearbites.chat.repository.ChatMessageRepository;
 import com.nearbites.chat.service.ChatMessageService;
 import com.nearbites.chat.service.ChatRoomService;
+import com.nearbites.model.Item;
+import com.nearbites.repository.ItemRepository;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -14,6 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @CrossOrigin(origins = { "http://localhost:8081" })
 @Controller
@@ -25,6 +32,8 @@ public class ChatController {
     private ChatMessageService chatMessageService;
     @Autowired
     private ChatRoomService chatRoomService;
+    @Autowired
+    ChatMessageRepository chatMessageRepository;
 
     @MessageMapping("/chat")
     public void processMessage(@Payload ChatMessage chatMessage) {
@@ -39,6 +48,15 @@ public class ChatController {
                         saved.getId(),
                         saved.getSenderId(),
                         saved.getSenderName()));
+    }
+
+    @GetMapping("/messages/allMessagesSenderId/{senderId}")
+    public ResponseEntity<List<ChatMessage>> getAllMessagesBySenderId(@PathVariable String senderId) {
+        List<ChatMessage> chatMessages;
+
+        chatMessages = chatMessageRepository.findBySenderId(senderId);
+
+        return new ResponseEntity<>(chatMessages, HttpStatus.OK);
     }
 
     @GetMapping("/messages/{senderId}/{recipientId}/count")
