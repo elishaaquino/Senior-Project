@@ -10,6 +10,7 @@
             </b-nav-form>
 
             <b-nav-item v-if="isLoggedIn" @click=profile()><span class="text-danger">PROFILE</span></b-nav-item>
+            <b-nav-item v-if="isLoggedIn" @click=messages()><span class="text-danger">MESSAGES</span></b-nav-item>
             <b-nav-item v-if="isLoggedIn" @click="logOut()"><span class="text-danger">SIGN OUT</span></b-nav-item>
             
             <b-nav-item to="/signIn" v-else>Sign In</b-nav-item>
@@ -89,6 +90,9 @@ export default {
    methods: {
       profile() {
          this.$router.push('/userAccount/' + JSON.parse(localStorage.user)["username"]);
+      },
+      messages() {
+         this.$router.push('/messages/' + JSON.parse(localStorage.user)["username"]);
       },
       logOut() {
          this.$store.dispatch('auth/logout');

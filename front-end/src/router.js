@@ -23,6 +23,11 @@ export const router = new Router({
          component: () => import("./components/UserAccount")
       },
       {
+         path: "/messages/:userUsername",
+         name: "messages",
+         component: () => import("./components/Messages")
+      },
+      {
          path: "/additem",
          component: () => import("./components/AddItem")
       },
