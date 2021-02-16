@@ -29,18 +29,10 @@
                                     :price=item.price
                                     :quantity="item.quantity"
                                     :photo="item.photos[0]"
-                                    :sellerId="item.ownerId"/>
-                            </div>
-                            <div v-if="btn_id === 1">
-                                <Item 
-                                    v-for="item in buyingItems" 
-                                    :key="item.id"
-                                    :id="item.id"
-                                    :itemName="item.name"
-                                    :price=item.price
-                                    :quantity="item.quantity"
-                                    :photo="item.photos[0]"
-                                    :sellerId="item.ownerId"/>
+                                    :sellerId="item.ownerId"
+                                    :sellerName=userUsername
+                                    :sellerImg=sellerImg
+                                    />
                             </div>
                         </div>
                     </div>
@@ -53,6 +45,7 @@
 <script>
 import Item from "./Item";
 import ItemService from '../service/ItemService';
+import UserDataService from '../service/UserDataService';
 
 export default {
     name: 'userAccount',
@@ -62,7 +55,8 @@ export default {
                 userUsername: "",
                 btn_id: 0,
                 sellingItems: [],
-                buyingItems: []
+                buyingItems: [],
+                sellerImg: ""
             }
         },
         methods: {
@@ -80,6 +74,10 @@ export default {
                         }
                     }
                 );
+
+                UserDataService.getUser(userId).then(resp => {
+                     this.sellerImg = resp.data.imageUrl;
+                  });
             },
             updateUser() {
                 var userId = JSON.parse(localStorage.user)["id"];

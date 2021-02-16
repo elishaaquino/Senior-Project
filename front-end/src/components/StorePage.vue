@@ -34,7 +34,10 @@
                             :price=item.price
                             :quantity="item.quantity"
                             :photo="item.photos[0]"
-                            :sellerId="item.ownerId"/>
+                            :sellerId="item.ownerId"
+                            :sellerName=store_name
+                            :sellerImg=sellerImg
+                            />
                     </div>
                 </div>
 
@@ -77,7 +80,8 @@ export default {
                 facebookUrl: '',
                 storename: '',
                 sellingItems: [],
-                reviews: []
+                reviews: [],
+                sellerImg: ""
             }
         },
         methods: {
@@ -101,6 +105,8 @@ export default {
                         this.email = resp.data["contact"]["email"];
                         
                         this.reviews = resp.data["reviews"];
+
+                        this.sellerImg = resp.data["imageUrl"];
                     }
                 )
             }

@@ -11,7 +11,9 @@
                   :itemName="item.itemName"
                   :price="item.price"
                   :quantity="item.quantity"
-                  :photo="item.photo"/>
+                  :photo="item.photo"
+                  :sellerName="item.sellerName"
+                  :sellerImg="item.sellerImg"/>
             <p v-if="items.length == 0"><strong>No results found :(</strong></p>
          </div>
       </div>
@@ -21,6 +23,7 @@
 <script>
 import Item from "./Item";
 import ItemService from '../service/ItemService';
+import UserDataService from '../service/UserDataService';
 
 export default {
    name: "Results",
@@ -48,7 +51,11 @@ export default {
                      photo: element.photos[0]
                   }
 
-                  this.items.push(item);
+                  UserDataService.getUser(element.ownerId).then(resp => {
+                     item.sellerName = resp.data.firstName + " " + resp.data.lastName;
+                     item.sellerImg = resp.data.imageUrl;
+                     this.items.push(item);
+                  });
                });
             });
          else {
@@ -64,9 +71,14 @@ export default {
                      photo: element.photos[0]
                   }
 
-                  this.items.push(item);
+                  UserDataService.getUser(element.ownerId).then(resp => {
+                     item.sellerName = resp.data.firstName + " " + resp.data.lastName;
+                     item.sellerImg = resp.data.imageUrl;
+                     this.items.push(item);
+                  });
+
                });
-            })
+            });
          }
       }
    },
