@@ -3,7 +3,7 @@
       <div class="row">
          <div class="col-lg-12">
             <p>
-               Search results for {{keyword}}
+               Search results for <strong>{{keyword}}</strong>
             </p>
          </div>
       </div>
@@ -111,6 +111,7 @@ export default {
 
 .container {
    align-items: center;
+   padding: 0px 0px 60px 0px;
 }
 
 .row {
