@@ -34,17 +34,17 @@
             <mdb-col md="2" lg="2" xl="2" class="mx-auto mt-3">
             </mdb-col>
             <hr class="w-100 clearfix d-md-none" />
-            <mdb-col md="3" lg="2" xl="2" class="mx-auto mt-3">
+            <mdb-col md="3" lg="2" xl="2" class="siteLinks mx-auto mt-3">
                <h6 class="text-uppercase mb-4 font-weight-bold">Site links</h6>
                <p><a href="/">HOME </a></p>
-               <p><a :href="accountname">YOUR ACCOUNT</a></p>
-               <p><a href="#!">MESSAGES</a></p>
+               <p><a :href="accountname">MY ACCOUNT</a></p>
+               <p><a :href="messagepage">MESSAGES</a></p>
             </mdb-col>
             <hr class="w-100 clearfix d-md-none" />
-            <mdb-col md="4" lg="3" xl="3" class="mx-auto mt-3">
-               <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
-               <p><i class=""><img src="https://img.icons8.com/material-sharp/24/000000/worldwide-location.png"/></i> San Luis Obispo, CA, US</p>
-               <p><i class=""><img src="https://img.icons8.com/material-rounded/24/000000/cursor.png"/></i> Cal Poly Website</p>
+            <mdb-col md="4" lg="3" xl="3" class="moreInfo mx-auto mt-3">
+               <h6 class="text-uppercase mb-4 font-weight-bold">More Info</h6>
+               <p><i class=""><img src="https://img.icons8.com/material-sharp/24/000000/worldwide-location.png"/></i><a href="https://www.slocal.com/">    San Luis Obispo, CA, US</a></p>
+               <p><i class=""><img src="https://img.icons8.com/material-rounded/24/000000/cursor.png"/></i><a href="https://www.calpoly.edu/major/computer-science">    Cal Poly Website</a></p>
             </mdb-col>
             </mdb-row>
             <hr />
@@ -68,6 +68,7 @@ export default {
       return {
          search: "",
          accountname: "/userAccount/",
+         messagepage: "/messages/"
       }
    },
    components: {
@@ -86,6 +87,7 @@ export default {
    },
    created: function () {
       this.accountname += JSON.parse(localStorage.user)["username"];
+      this.messagepage += JSON.parse(localStorage.user)["username"];
    },
    methods: {
       profile() {
@@ -135,9 +137,16 @@ export default {
       text-decoration: none;
    }
 
-   a:hover, a:active {
-   background-color: white;
-   text-decoration: none;
+   .siteLinks a:hover, a:active {
+      background-color: #FCF5F3;
+      text-decoration: none;
+      color: #D25B3E;
+   }
+
+   .moreInfo a:hover, a:active {
+      background-color: #FCF5F3;
+      text-decoration: none;
+      color: #D25B3E;
    }
 
    .footer {
