@@ -116,7 +116,6 @@ export default {
 
 .row {
    position: relative;
-   margin-top: 50px;
    display: flex;
 }
 
