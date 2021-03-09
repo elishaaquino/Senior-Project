@@ -103,7 +103,7 @@ export default {
 }
 
 .card {
-  margin: 30px auto;
+  margin: 50px auto;
   width: 200px;
   height: 200px;
   border-radius: 60px;
